@@ -3,7 +3,7 @@
   <div class="container">
     <div class="text-end mt-4">
                                                    <!-- 用帶入的字串參數判斷開啟modal類別 -->
-      <button class="btn btn-primary" type="button" @click="openModal('isNew','item')">
+      <button class="btn btn-primary" type="button" @click="openModal('new')">
         建立新產品
       </button>
     </div>
@@ -41,10 +41,10 @@
           </td>
           <td>
             <div class="btn-group">
-              <button type="button" class="btn btn-outline-primary btn-sm"  @click="openModal('edit', 'item')" >
+              <button type="button" class="btn btn-outline-primary btn-sm"  @click="openModal('edit', item )" >
                 編輯
               </button>
-              <button type="button" class="btn btn-outline-danger btn-sm"  @click="openModal('delete', 'item')">
+              <button type="button" class="btn btn-outline-danger btn-sm"  @click="openModal('delete', item)">
                 刪除
               </button>
             </div>
@@ -98,12 +98,12 @@ export default {
         const { products, pagination } = res.data
         this.products = products
         this.pagination = pagination
+        console.log('取得')
       })
     },
-    openModal (state, product) {
-      console.log(state, product)
+    openModal (state, item) {
       // 如果判斷帶入變數顯示狀態是新增 就清空modal內資料
-      if (state === 'isNew') {
+      if (state === 'new') {
         this.tempProduct = {
           imagesUrl: []
         }
@@ -112,8 +112,8 @@ export default {
         this.$refs.productModal.showModal()
         // 如果判斷帶入變數顯示狀態是修改
       } else if (state === 'edit') {
-        // 避免多圖新增、修改、刪除會傳參考修改到 product.imagesUrl
-        this.tempProduct = { ...product }
+        // 避免多圖新增、修改、刪除會傳參考修改到 item.imagesUrl
+        this.tempProduct = { ...item }
         this.isNew = false
         // 操控productModal元件內的methods
         this.$refs.productModal.showModal()
@@ -121,7 +121,7 @@ export default {
           this.tempProduct.imagesUrl = []
         }
       } else if (state === 'delete') {
-        this.tempProduct = { ...product }
+        this.tempProduct = { ...item }
         this.$refs.delProductModal.showModal()
       }
     }
