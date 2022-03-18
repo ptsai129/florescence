@@ -24,8 +24,22 @@ const routes = [
     ]
   },
   {
+    path: '/login',
+    component: () => import('../views/AdminLogin.vue')
+  },
+  {
     path: '/admin',
-    component: () => import('../views/DashboardView.vue')
+    component: () => import('../views/DashboardView.vue'),
+    children: [
+      {
+        path: 'products',
+        component: () => import('../views/AdminProducts.vue') // 後台 產品
+      },
+      {
+        path: 'order',
+        component: () => import('../views/AdminOrders.vue') // 後台 產品
+      }
+    ]
   }
 ]
 
