@@ -52,7 +52,7 @@
         </tr>
       </tbody>
     </table>
-    <!-- 頁數元件 前內(get-productlist)後外(getProductsList)  -->
+    <!-- 頁數元件 前內(update)後外(getProductsList)  -->
     <Pagination
       :pages="pagination"
       @get-productlist="getProductsList"
@@ -60,12 +60,12 @@
   </div>
   <!-- 新增&編輯產品元件 -->
   <product-modal :item="tempProduct"  :is-new="isNew"
-    ref="productModal" @get-productlist="getProductsList"
+    ref="productModal" @update-products="getProductsList"
     :current-page="pagination.current_page"
   ></product-modal>
   <!--刪除Modal -->
   <DeleteModal :item="tempProduct"
-   @get-productlist="getProductsList"
+   @update-products="getProductsList"
     ref="delProductModal"
   ></DeleteModal>
 </template>

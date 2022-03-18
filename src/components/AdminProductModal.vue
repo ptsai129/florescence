@@ -20,7 +20,7 @@
             <div class="col-sm-6">
               <img
                 class="img-fluid"
-                :src="product.imagesUrl"
+                :src="tempProduct.imagesUrl"
                 alt="productPicture"
               />
             </div>
@@ -28,11 +28,11 @@
               <span class="badge bg-primary rounded-pill">{{
                 product.category
               }}</span>
-              <p>商品描述：{{ product.description }}</p>
-              <p>商品內容：{{ product.content }}</p>
-              <div class="h5">{{ product.price }} 元</div>
-              <del class="h6">原價 {{ product.origin_price }} 元</del>
-              <div class="h5">現在只要 {{ product.price }} 元</div>
+              <p>商品描述：{{ tempProduct.description }}</p>
+              <p>商品內容：{{ tempProduct.content }}</p>
+              <div class="h5">{{ tempProduct.price }} 元</div>
+              <del class="h6">原價 {{ tempProduct.origin_price }} 元</del>
+              <div class="h5">現在只要 {{ tempProduct.price }} 元</div>
               <div>
                 <div class="input-group">
                   <input
@@ -62,6 +62,7 @@
 import Modal from 'bootstrap/js/dist/modal'
 export default {
   props: {
+    // 接收外層AdminProducts.vue傳入的tempProduct
     item: {
       type: Object,
       default () {
@@ -80,14 +81,13 @@ export default {
       tempProduct: {
         imagesUrl: []
       },
-      // 數量預設一個
       qty: 1
     }
   },
   // 監聽props的item是否有變動
   watch: {
     item () {
-      this.getProdcutDetails()
+      this.tempProduct = JSON.parse(JSON.stringify(this.item))
     }
   },
   methods: {
@@ -97,12 +97,27 @@ export default {
     hideModal () {
       this.productModal.hide()
     },
-    getProdcutDetails () {
-      // 觸發 getProdcutDetails 的時， qty 要變成初始值
-      this.qty = 1
-      this.$http.get(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/product/${this.id}`)
+    updateProducts () {
+      let updateUrl = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/product`
+      let requestMethod = 'post'
+      // 如果是編輯商品資料 api網址和請求方法會更改
+      if (!this.isNew) {
+        updateUrl = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/product/${this.item.id}`
+        requestMethod = 'put'
+        console.log('更改')
+      }
+      this.http[requestMethod](updateUrl, { data: this.item })
         .then((res) => {
-          this.product = res.data.product
+        // 顯示已建立產品
+          alert(res.data.message)
+          // 重新取得新的資料並渲染到畫面上
+          this.$emit('update-products')
+          // 關閉modal
+          this.hideModal()
+          console.log('顯示已建立商品')
+        })
+        .catch((err) => {
+          alert(err.data.message)
         })
     }
   },
