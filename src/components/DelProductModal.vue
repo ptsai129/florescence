@@ -52,6 +52,16 @@ export default {
     },
     hideModal () {
       this.delProductModal.hide()
+    },
+    deleteProduct () {
+      this.$http.delete(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/product/${this.item.id}`)
+        .then((res) => {
+          this.$emit('getProductList')
+          alert(res.data.message)
+          this.hideModal()
+        }).catch((err) => {
+          alert(err.data.message)
+        })
     }
   },
   mounted () {

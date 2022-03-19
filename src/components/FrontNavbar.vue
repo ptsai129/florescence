@@ -4,6 +4,8 @@
     <router-link to="/" class="navbar-brand me-5">
          <img src="../assets/images/logo.png" class="nav-logo" alt="logo">
         </router-link>
+        <i class="bi bi-balloon-heart fs-4  text-secondary me-1 d-lg-none d-md-none"></i>
+        <i class="bi bi-basket fs-4 text-secondary me-1 d-lg-none  d-md-none"></i>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -19,7 +21,8 @@
          <router-link  class="nav-link" aria-current="page" to="/faq">訂花需知</router-link>
         </li>
       </ul>
-       <router-link  class="btn btn-secondary mt-2" aria-current="page" to="/shopflowers"><i class="bi bi-bag-heart me-2"></i>買一束花吧</router-link>
+       <i class="bi bi-balloon-heart fs-3 text-secondary me-4 d-none d-md-block "></i>
+       <i class="bi bi-basket fs-3 text-secondary me-4 d-none d-md-block"></i>
       <div>
       </div>
     </div>
@@ -30,8 +33,13 @@
 <style lang="scss">
 @import "src/assets/all.scss";
 .nav-logo{
-height:70px;
-width:190px;
+height:50px;
+width:130px;
+ @media (min-width: 576px) {
+    height:70px;
+    width:190px;
+  }
+
 }
 .nav-item:hover{
 background-color: $success;

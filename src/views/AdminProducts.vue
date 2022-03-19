@@ -65,7 +65,7 @@
   ></product-modal>
   <!--刪除Modal -->
   <DeleteModal :item="tempProduct"
-   @update-products="getProductsList"
+   @getProductList="getProductsList"
     ref="delProductModal"
   ></DeleteModal>
 </template>
@@ -98,7 +98,7 @@ export default {
         const { products, pagination } = res.data
         this.products = products
         this.pagination = pagination
-        console.log('取得')
+        console.log('取得產品列表')
       })
     },
     openModal (state, item) {

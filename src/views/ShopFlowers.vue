@@ -8,22 +8,20 @@
     </select>
     <div class="row">
       <div
-        class="col-md-6 col-lg-4"
+        class="col-md-6 col-lg-3 mb-3 mb-md-5"
         v-for="product in products"
         :key="product.id"
       >
-        <div class="card border-primary mb-5">
-          <img
-            :src="product.imageUrl"
-            class="card-img-top"
-            alt="flowershopProducts"
-          />
+        <div class="card h-100 border-primary">
+          <div :style="{backgroundImage:`url(${product.imageUrl})`}" style="height:300px; background-size:cover; background-position:center center">
+          </div>
           <div class="card-body text-secondary">
             <h5 class="card-title">{{ product.title }}</h5>
             <p class="card-text">{{ product.description }}</p>
-            <div class="d-flex justify-content-between align-items-center">
               <p class="fs-5 fw-bold mb-0">NT${{ product.price }}</p>
-              <a href="#" class="btn btn-primary">加入購物車</a>
+            <div class="d-flex">
+              <a href="#" class="btn btn-info text-light me-3"><i class="bi bi-balloon-heart"></i></a>
+              <a href="#" class="btn btn-success text-primary fw-bold"><i class="bi bi-basket-fill me-1"></i>加入購物車</a>
             </div>
           </div>
         </div>
