@@ -1,5 +1,5 @@
 <template>
-<nav class="navbar  fixed-top navbar-expand-lg navbar-light bg-primary position-relative">
+<nav class="navbar  fixed-top navbar-expand-md navbar-light bg-primary position-relative">
   <div class="container-fluid sticky-top">
     <router-link to="/" class="navbar-brand me-5">
          <img src="../assets/images/logo.png" class="nav-logo" alt="logo">

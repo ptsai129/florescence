@@ -133,21 +133,23 @@ export default {
       let requestMethod = 'post'
       // 如果是編輯商品資料 api網址和請求方法會更改
       if (!this.isNew) {
+        console.log(this.tempProduct.id)
         updateUrl = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/product/${this.tempProduct.id}`
         requestMethod = 'put'
         console.log('更改')
       }
-      this.http[requestMethod](updateUrl, { data: this.tempProduct })
+      this.$http[requestMethod](updateUrl, { data: this.tempProduct })
         .then((res) => {
         // 顯示已建立產品
           alert(res.data.message)
           // 重新取得新的資料並渲染到畫面上 update-products(內層事件)emit觸發外層getProductsList方法
-          this.$emit('update-products')
+          this.$emit('getProductsList')
           // 關閉modal
           this.hideModal()
           console.log('顯示已建立商品')
         })
         .catch((err) => {
+          console.dir(err)
           alert(err.data.message)
         })
     }

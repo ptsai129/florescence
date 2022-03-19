@@ -59,8 +59,8 @@
     ></Pagination>
   </div>
   <!-- 新增&編輯產品元件 -->
-  <product-modal :item="tempProduct"  :is-new="isNew"
-    ref="productModal" @update-products="getProductsList"
+  <product-modal :item="tempProduct"  :isNew="isNew"
+    ref="productModal" @getProductsList="getProductsList"
     :current-page="pagination.current_page"
   ></product-modal>
   <!--刪除Modal -->

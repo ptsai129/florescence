@@ -1,15 +1,16 @@
 <template>
-  <div class="banner container-fluid position-relative">
-    <!--文字要補輸入文字動畫效果 https://codepen.io/uiswarup/pen/JBMGbb-->
+  <div class="banner container-fluid d-flex justify-content-center align-items-center">
+    <div class="banner-txt typewriter">
     <h1
-      class="fs-2 fw-bold text-light position-absolute top-50 start-50 translate-middle"
+      class="fs-2 fw-bold text-light"
     >
       讓花的香氣和美好，走進你的生活裡
     </h1>
+    </div>
   </div>
   <div class="intro container-fluid bg-primary">
     <div class="container">
-      <h2 class="fs-3 py-2 pt-md-4 pb-md-3 mb-0 text-secondary fw-bold">
+      <h2 class="fs-3 py-3 pt-md-4 pb-md-3 mb-0 text-secondary fw-bold">
         關於我們
       </h2>
       <div class="row g-0 py-1 py-md-3">
@@ -76,6 +77,29 @@
   @media (min-width: 576px) {
     height: 450px;
   }
+}
+.banner-txt{
+ max-width:300px;
+ @media (min-width: 576px) {
+    max-width:500px;
+  }
+  @media (min-width: 768px) {
+    max-width:700px;
+  }
+}
+.typewriter h1 {
+  overflow: hidden; /* 確保動畫開始前不顯示文字*/
+  border-right: .15em solid #fff; /* 文字輸入游標 */
+  white-space: nowrap; /* 保持單行顯示*/
+  animation: typing 3.5s steps(30, end), blink-caret .5s step-end infinite;
+}
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: #fff }
 }
 .intro-text{
  padding:30px;
