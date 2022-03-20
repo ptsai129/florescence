@@ -1,6 +1,6 @@
 <template>
   <div class="container mt-md-5 mt-3 mb-7">
-    <select class="form-select w-25 mb-5" aria-label="Default select example">
+    <select ref="selectProducts" @change="filterProducts" class="form-select w-25 mb-5" aria-label="Default select example">
       <option value="全部" selected>全部</option>
       <option value="鮮花">鮮花</option>
       <option value="花束">花束</option>
@@ -52,7 +52,8 @@
 export default {
   data () {
     return {
-      products: []
+      products: [],
+      filteredType: ''
     }
   },
   methods: {
@@ -62,6 +63,17 @@ export default {
       this.$http.get(url).then((res) => {
         this.products = res.data.products
       })
+    },
+    // 篩選商品
+    filterProducts () {
+      const filteredType = this.$refs.selectProducts.value
+      console.log(filteredType)
+      if (filteredType === '全部') {
+        this.getProducts()
+      } else {
+        console.log('有執行到')
+        this.products = this.products.filter((item) => item.category === filteredType)
+      }
     }
   },
   mounted () {
