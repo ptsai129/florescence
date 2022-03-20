@@ -1,7 +1,7 @@
 <template>
   <div class="container mt-5">
-    <form class="row justify-content-center" @submit.prevent="logIn">
-      <div class="col-md-6">
+    <form class="row align-items-center justify-content-center" @submit.prevent="logIn">
+      <div class="col-md-4">
         <h1 class="h3 mb-3 font-weight-normal">後台管理</h1>
         <div class="mb-2">
           <label for="inputEmail" class="sr-only">請輸入管理員電子郵件地址</label>

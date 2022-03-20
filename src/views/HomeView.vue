@@ -42,12 +42,11 @@
         </div>
         <div class="col-md-4 pt-3 pb-5">
           <div class="popular-item position-relative">
-            <div class="popular-img">
+             <router-link to="/shopflowers">
               <img
                 class="img-fluid object-cover"
                 src="../assets/images/pottedFlowers-1.jpg"
-              />
-            </div>
+              /></router-link>
             <div
               class="popular-txt position-absolute top-50 start-50 translate-middle"
             >
