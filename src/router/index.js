@@ -18,6 +18,10 @@ const routes = [
         component: () => import('../views/ShopFlowers.vue') // 前台 選購花禮
       },
       {
+        path: 'product/:id',
+        component: () => import('../views/FrontProduct.vue') // 前台 產品單一頁面
+      },
+      {
         path: 'faq',
         component: () => import('../views/FrequentlyAskedQuestions.vue')// 前台 訂花需知
       }

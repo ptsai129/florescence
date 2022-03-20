@@ -1,5 +1,5 @@
 <template>
-<nav class="navbar  fixed-top navbar-expand-md navbar-light bg-primary position-relative">
+<nav class="navbar  fixed-top navbar-expand-md navbar-light bg-primary box-shadow position-relative">
   <div class="container-fluid sticky-top">
     <router-link to="/" class="navbar-brand me-5">
          <img src="../assets/images/logo.png" class="nav-logo" alt="logo">
@@ -32,6 +32,9 @@
 
 <style lang="scss">
 @import "src/assets/all.scss";
+.box-shadow{
+ box-shadow: 0px 0px 15px rgba(232, 219, 211, .9);
+}
 .nav-logo{
 height:50px;
 width:130px;

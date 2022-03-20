@@ -1,6 +1,6 @@
 <template>
   <div class="container mt-md-5 mt-3 mb-7">
-    <select ref="selectProducts" @change="filterProducts" class="form-select w-25 mb-5" aria-label="Default select example">
+    <select v-model="input.type" class="form-select w-25 mb-5" aria-label="Default select example">
       <option value="全部" selected>全部</option>
       <option value="鮮花">鮮花</option>
       <option value="花束">花束</option>
@@ -9,19 +9,19 @@
     <div class="row">
       <div
         class="col-md-6 col-lg-3 mb-3 mb-md-5"
-        v-for="product in products"
+        v-for="product in filteredProducts"
         :key="product.id"
       >
         <div class="card h-100 border-primary">
-          <div :style="{backgroundImage:`url(${product.imageUrl})`}" style="height:300px; background-size:cover; background-position:center center">
-          </div>
+          <router-link  :to="`/product/${product.id}`"  :style="{backgroundImage:`url(${product.imageUrl})`}" style="height:300px; background-size:cover; background-position:center center">
+          </router-link>
           <div class="card-body text-secondary">
             <h5 class="card-title">{{ product.title }}</h5>
             <p class="card-text">{{ product.description }}</p>
               <p class="fs-5 fw-bold mb-0">NT${{ product.price }}</p>
             <div class="d-flex">
-              <a href="#" class="btn btn-info text-light me-3"><i class="bi bi-balloon-heart"></i></a>
-              <a href="#" class="btn btn-success text-primary fw-bold"><i class="bi bi-basket-fill me-1"></i>加入購物車</a>
+              <a href="#" class="btn btn-info text-light me-3"><i class="bi bi-balloon-heart-fill"></i></a>
+              <a href="#" class="btn btn-success text-secondary fw-bold"><i class="bi bi-basket-fill me-1"></i>加入購物車</a>
             </div>
           </div>
         </div>
@@ -53,7 +53,9 @@ export default {
   data () {
     return {
       products: [],
-      filteredType: ''
+      input: {
+        type: '全部'
+      }
     }
   },
   methods: {
@@ -63,16 +65,16 @@ export default {
       this.$http.get(url).then((res) => {
         this.products = res.data.products
       })
-    },
-    // 篩選商品
-    filterProducts () {
-      const filteredType = this.$refs.selectProducts.value
-      console.log(filteredType)
-      if (filteredType === '全部') {
-        this.getProducts()
+    }
+  },
+  computed: {
+    filteredProducts () {
+      if (this.input.type === '全部') {
+        return this.products
       } else {
-        console.log('有執行到')
-        this.products = this.products.filter((item) => item.category === filteredType)
+        return this.products.filter(item => {
+          return item.category === this.input.type
+        })
       }
     }
   },
