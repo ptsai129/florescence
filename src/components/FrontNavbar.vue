@@ -1,6 +1,7 @@
 <template>
+<div class="sticky-top">
 <nav class="navbar  fixed-top navbar-expand-md navbar-light bg-primary box-shadow position-relative">
-  <div class="container-fluid sticky-top">
+  <div class="container ">
     <router-link to="/" class="navbar-brand me-5">
          <img src="../assets/images/logo.png" class="nav-logo" alt="logo">
         </router-link>
@@ -26,12 +27,13 @@
         </li>
       </ul>
        <a href="#"><i class="bi bi-balloon-heart fs-3 text-secondary me-4 d-none d-md-block"></i></a>
-       <a href="#"><i class="bi bi-basket fs-3 text-secondary me-4 d-none d-md-block"></i></a>
+       <router-link to="/cart"><i class="bi bi-basket fs-3 text-secondary me-4 d-none d-md-block"></i></router-link>
       <div>
       </div>
     </div>
   </div>
 </nav>
+</div>
 </template>
 
 <style lang="scss">
@@ -53,4 +55,5 @@ background-color: $success;
 color: $light;
 font-weight:bold;
 }
+
 </style>

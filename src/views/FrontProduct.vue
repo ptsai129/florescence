@@ -17,14 +17,14 @@ export default {
   methods: {
     // 取得單一產品
     getProduct () {
-      const { id } = this.$route.params
-      const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/product/${id}`
+      const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/product/${this.id}`
       this.$http.get(url).then((res) => {
         this.product = res.data.product
       })
     }
   },
   mounted () {
+    this.id = this.$route.params.id
     this.getProduct()
   }
 }

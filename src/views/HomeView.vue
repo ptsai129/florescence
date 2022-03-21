@@ -66,7 +66,7 @@
         <div class="col-12 col-md-6 col-lg-4">
           <div class="pic">
             <img
-              class="img-fluid h-100 object-cover"
+              class="img-fluid  object-cover"
               src="../assets/images/intro-photo.jpg"
               alt=""
             />
@@ -77,10 +77,6 @@
             <p class="fs-5">
               Florescence，是英文中花期全盛期的意思，希望將花綻放盛開後，最美的時期，帶給所有人。
               花，有著不同的祝福與寓意，同時也可以將您內心最真摯的感情與祝福傳遞給您心目中最特別的人。
-            </p>
-            <p class="fs-5">
-              Florescence從浪漫奢華的花束、觀賞用花、到平和寧靜的日常花卉皆有提供，只希望能夠將花卉植物的美好與您心中的祝福都能傳達給您心中最特別的人。
-              同時我們也不斷追尋更好的技術與更溫暖的花藝，力求能在您繁忙的生活與工作中，將這束最美的花獻給您。
             </p>
             <router-link
               class="btn btn-secondary mt-2"

@@ -24,6 +24,10 @@ const routes = [
       {
         path: 'faq',
         component: () => import('../views/FrequentlyAskedQuestions.vue')// 前台 訂花需知
+      },
+      {
+        path: 'cart',
+        component: () => import('../views/FrontCart.vue')// 前台 購物車
       }
     ]
   },
