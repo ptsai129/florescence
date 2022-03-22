@@ -72,7 +72,7 @@
             />
           </div>
         </div>
-        <div class="col-12 col-md-6 col-lg-8 bg-light">
+        <div class="col-12 col-md-6 col-lg-8 bg-light" >
           <div class="intro-text">
             <p class="fs-5">
               Florescence，是英文中花期全盛期的意思，希望將花綻放盛開後，最美的時期，帶給所有人。
@@ -193,5 +193,6 @@
 </style>
 
 <script>
-export default {}
+export default {
+}
 </script>

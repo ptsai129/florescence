@@ -9,18 +9,20 @@
                 <div class="d-sm-flex text-center text-md-start">
                      <div class="mx-auto" :style="{backgroundImage:`url(${item.product.imageUrl})`}" style="height:240px; width:240px; background-size:cover; background-position:center center"></div>
                     <div class="ms-md-5 pt-3 text-secondary">
-                        <h3 class="fs-4 fw-bold">產品名稱: {{item.product.title}}</h3>
-                        <h4 clsss="fs-5 fw-bold" >產品金額:NT$ {{item.product.price}}</h4>
-                        <p class="fs-6 pt-2">產品描述: {{item.product.description}}</p>
+                        <h3 class="fs-4 fw-bold">產品: {{item.product.title}}</h3>
+                        <h4 clsss="fs-5 fw-bold" >單價:NT$ {{item.product.price}}</h4>
+                        <p>購買金額:NT${{item.total}}</p>
                     </div>
                 </div>
                 <div class="d-flex flex-column pt-2 pt-sm-0 mx-auto mx-sm-0 text-center" style="max-width: 10rem;" >
-                    <div class="form-group mb-2">
-                        <label for="quantity">購買數量</label>
-                        <input class="form-control form-control-sm" type="number" id="quantity" value="1">
-                    </div>
-                    <button class="btn btn-secondary btn-sm btn-block mb-2" type="button">
-                      <i class="bi bi-arrow-repeat"></i>更新購物車</button>
+                      <div class="form-group mb-2">
+                        <p class="mb-0 text-secondary">購買數量</p>
+                        <select class="form-select text-center" v-model="item.qty" @change="updateCart(item)">
+                          <!-- 限制每品項最多數量10個  目前選取到的數值綁定api取得的qty-->
+                          <option :value="num" v-for="num in 10" :key="`${num}${item.id}`"
+                           :selected="item.qty === num">{{num}}</option>
+                        </select>
+                        </div>
                     <button class="btn btn-outline-danger btn-sm btn-block mb-2" type="button">
                     <i class="bi bi-trash-fill"></i>
                     刪除</button>
@@ -77,6 +79,14 @@ export default {
         // 完成購物車內容渲染後 將isLoadingItem狀態改為預設
         this.isLoadingItem = ''
       })
+    },
+    // 刪除全部購物車
+    deleteAll () {
+      this.$http.delete(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/carts`)
+        .then((res) => {
+          this.getCarts()
+          alert('購物車已刪除')
+        })
     }
   },
   mounted () {

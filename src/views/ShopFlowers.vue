@@ -25,30 +25,13 @@
             <h5 class="card-title">{{ product.title }}</h5>
               <p class="card-text fs-5 fw-bold mb-0">NT${{ product.price }}</p>
             <div class="d-flex">
-              <button class="btn btn-info text-light me-3"><i class="bi bi-balloon-heart-fill me-1"></i>追蹤商品</button>
-              <router-link class="btn btn-success text-secondary fw-bold"  :to="`/product/${product.id}`"><i class="bi bi-search me-1"></i>查看更多
-          </router-link>
+              <button class="btn btn-info text-light me-3"><i class="bi bi-balloon-heart-fill me-1"></i>收藏</button>
+              <button class="btn btn-success text-secondary fw-bold"  @click="addToCart(product.id)"><i class="bi bi-basket-fill me-1"></i>加入購物車
+          </button>
             </div>
           </div>
         </div>
       </div>
-      <nav class="d-flex justify-content-center">
-        <ul class="pagination">
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Previous">
-              <span aria-hidden="true">&laquo;</span>
-            </a>
-          </li>
-          <li class="page-item active"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Next">
-              <span aria-hidden="true">&raquo;</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
     </div>
   </div>
   <router-view></router-view>
@@ -85,6 +68,20 @@ export default {
       this.$http.get(url).then((res) => {
         this.products = res.data.products
       })
+    },
+    // 加入購物車
+    addToCart (id, qty = 1) {
+      // 定義要帶入api的資訊
+      const data = {
+        product_id: id,
+        qty
+      }
+      this.$http.post(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`, { data })
+        .then((res) => {
+          console.log(res)
+          // 顯示已加入購物車提示訊息
+          alert(res.data.message)
+        })
     }
   },
   computed: {

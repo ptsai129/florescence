@@ -4,6 +4,8 @@ import 'bootstrap'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+// importing AOS css style globally
+import 'aos/dist/aos.css'
 import App from './App.vue'
 import router from './router'
 

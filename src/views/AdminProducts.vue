@@ -72,7 +72,7 @@
 
 <script>
 import DeleteModal from '@/components/DelProductModal.vue'
-import Pagination from '@/components/AdminPagination.vue'
+import Pagination from '@/components/PaginationView.vue'
 import ProductModal from '@/components/AdminProductModal.vue'
 export default {
   components: {

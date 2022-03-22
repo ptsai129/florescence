@@ -48,6 +48,10 @@ const routes = [
         component: () => import('../views/AdminOrders.vue') // 後台 產品
       }
     ]
+  },
+  { // 代表所有 user 下的頁面，路由錯誤都會被導向首頁
+    path: '/:pathMatch(.*)*',
+    redirect: '/'
   }
 ]
 
