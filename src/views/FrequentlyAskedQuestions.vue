@@ -115,22 +115,22 @@
             </div>
           </div>
           <div class="accordion-item">
-            <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+            <h2 class="accordion-header" id="panelsStayOpen-headingFour">
               <button
                 class="accordion-button collapsed"
                 type="button"
                 data-bs-toggle="collapse"
-                data-bs-target="#panelsStayOpen-collapseTwo"
+                data-bs-target="#panelsStayOpen-collapseFour"
                 aria-expanded="false"
-                aria-controls="panelsStayOpen-collapseTwo"
+                aria-controls="panelsStayOpen-collapseFour"
               >
                 更改或取消訂單
               </button>
             </h2>
             <div
-              id="panelsStayOpen-collapseTwo"
+              id="panelsStayOpen-collapseFour"
               class="accordion-collapse collapse"
-              aria-labelledby="panelsStayOpen-headingTwo"
+              aria-labelledby="panelsStayOpen-headingFour"
             >
               <div class="accordion-body">
                 <ul>
@@ -148,22 +148,22 @@
         </h2>
         <div class="accordion mb-5" id="accordionPanelsStayOpenExample">
           <div class="accordion-item">
-            <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+            <h2 class="accordion-header" id="panelsStayOpen-headingFive">
               <button
                 class="accordion-button"
                 type="button"
                 data-bs-toggle="collapse"
-                data-bs-target="#panelsStayOpen-collapseOne"
+                data-bs-target="#panelsStayOpen-collapseFive"
                 aria-expanded="true"
-                aria-controls="panelsStayOpen-collapseOne"
+                aria-controls="panelsStayOpen-collapseFive"
               >
                 鮮花花束
               </button>
             </h2>
             <div
-              id="panelsStayOpen-collapseOne"
+              id="panelsStayOpen-collapseFive"
               class="accordion-collapse collapse show"
-              aria-labelledby="panelsStayOpen-headingOne"
+              aria-labelledby="panelsStayOpen-headingFive"
             >
               <div class="accordion-body">
                <ol>
@@ -177,22 +177,22 @@
             </div>
           </div>
           <div class="accordion-item">
-            <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+            <h2 class="accordion-header" id="panelsStayOpen-headingSix">
               <button
                 class="accordion-button collapsed"
                 type="button"
                 data-bs-toggle="collapse"
-                data-bs-target="#panelsStayOpen-collapseTwo"
+                data-bs-target="#panelsStayOpen-collapseSix"
                 aria-expanded="false"
-                aria-controls="panelsStayOpen-collapseTwo"
+                aria-controls="panelsStayOpen-collapseSix"
               >
                 鮮花桌花、花盒
               </button>
             </h2>
             <div
-              id="panelsStayOpen-collapseTwo"
+              id="panelsStayOpen-collapseSix"
               class="accordion-collapse collapse"
-              aria-labelledby="panelsStayOpen-headingTwo"
+              aria-labelledby="panelsStayOpen-headingSix"
             >
               <div class="accordion-body">
                <ol>
@@ -213,7 +213,8 @@
 
 <style lang="scss">
 .faq-bg{
-background-image: url('https://images.unsplash.com/photo-1543157145-f78c636d023d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2069&q=80');
-background-position:bottom center;
+background-image: url('../assets/images/faqBackground.jpg');
+background-position: top;
+background-attachment: fixed;
 }
 </style>

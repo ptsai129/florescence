@@ -25,8 +25,9 @@
             <h5 class="card-title">{{ product.title }}</h5>
               <p class="card-text fs-5 fw-bold mb-0">NT${{ product.price }}</p>
             <div class="d-flex">
-              <button class="btn btn-info text-light me-3"><i class="bi bi-balloon-heart-fill"></i></button>
-              <button class="btn btn-success text-secondary fw-bold" @click="addToCart()"><i class="bi bi-basket-fill me-1"></i>加入購物車</button>
+              <button class="btn btn-info text-light me-3"><i class="bi bi-balloon-heart-fill me-1"></i>追蹤商品</button>
+              <router-link class="btn btn-success text-secondary fw-bold"  :to="`/product/${product.id}`"><i class="bi bi-search me-1"></i>查看更多
+          </router-link>
             </div>
           </div>
         </div>
@@ -85,7 +86,6 @@ export default {
         this.products = res.data.products
       })
     }
-    // 加入購物車
   },
   computed: {
     // 篩選產品

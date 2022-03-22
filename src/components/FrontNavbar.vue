@@ -9,7 +9,7 @@
         <i class="bi bi-balloon-heart fs-4  text-secondary me-1 d-lg-none d-md-none"></i>
         </div>
         <div>
-        <i class="bi bi-basket fs-4 text-secondary me-1 d-lg-none  d-md-none"></i>
+        <router-link to="/cart"><i class="bi bi-basket fs-4 text-secondary me-1 d-lg-none  d-md-none"></i></router-link>
         </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
