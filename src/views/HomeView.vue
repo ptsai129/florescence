@@ -6,7 +6,7 @@
       <h1 class="fs-2 fw-bold text-light">讓花的香氣和美好，走進你的生活裡</h1>
     </div>
   </div>
-   <div class="popular-product container-fluid bg-primary">
+   <div class="popular-product container-fluid bg-light">
     <div class="container">
       <h2 class="fs-3 py-3 pt-md-4 pb-md-3 mb-0 text-secondary fw-bold">
         熱門花禮
@@ -73,7 +73,7 @@
           </div>
         </div>
         <div class="col-12 col-md-6 col-lg-8 bg-light" >
-          <div class="intro-text">
+          <div class="intro-text" data-aos="fade-left">
             <p class="fs-5">
               Florescence，是英文中花期全盛期的意思，希望將花綻放盛開後，最美的時期，帶給所有人。
               花，有著不同的祝福與寓意，同時也可以將您內心最真摯的感情與祝福傳遞給您心目中最特別的人。

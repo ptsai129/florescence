@@ -6,7 +6,7 @@
               </div>
         </div>
         <div class="col-md-6 col-lg-8">
-          <h2 class="fw-bold h1 mb-1"> {{ product.title }}</h2>
+          <h1 class="fw-bold h1 mb-1"> {{ product.title }}</h1>
           <p class="mb-0 text-muted text-end"><del>NT$ {{product.origin_price}}</del></p>
           <p class="h4 fw-bold text-end">NT${{product.price}}</p>
           <div class="row align-items-center">

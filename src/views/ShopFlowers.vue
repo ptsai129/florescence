@@ -1,7 +1,7 @@
 <template>
   <div class="shop-banner container-fluid position-relative">
   <div class="shopBanner-txt position-absolute bottom-50">
-  <h1 class="fs-2 fw-bold text-light">買一束花，送給特別的人</h1>
+  <h1 class="fs-2 fw-bold text-light">買一束花，送給特別的人。</h1>
   </div>
   </div>
   <div class="container mt-md-5 mt-3 mb-7">
@@ -17,7 +17,7 @@
         v-for="product in filteredProducts"
         :key="product.id"
       >
-        <div class="card h-100 border-primary">
+        <div class="card h-100 border-primary" data-aos="fade-up">
           <router-link  :to="`/product/${product.id}`"  :style="{backgroundImage:`url(${product.imageUrl})`}" style="height:300px; background-size:cover; background-position:center center" class="position-relative">
           </router-link>
           <span class="badge bg-secondary fs-6 p-2 position-absolute">{{product.category}}</span>
