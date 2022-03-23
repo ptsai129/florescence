@@ -28,7 +28,7 @@
              {{this.qty}}
             </div>
             <div class="col-6">
-              <button class="text-nowrap btn btn-secondary w-100 py-2 rounded" @click="addToCart(this.qty ,this.id)">加入購物車</button>
+              <button class="text-nowrap btn btn-secondary w-100 py-2 rounded" @click="addToCart(qty)">加入購物車</button>
             </div>
           </div>
           <small class="text-info mt-3">如需大量訂購，歡迎透過電話和我們討論</small>
@@ -60,7 +60,7 @@ export default {
       // 定義要帶入api的資訊
       const data = {
         product_id: this.id,
-        qty: this.qty
+        qty
       }
       this.$http.post(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`, { data })
         .then((res) => {
