@@ -23,7 +23,7 @@
                            :selected="item.qty === num">{{num}}</option>
                         </select>
                         </div>
-                    <button class="btn btn-outline-danger btn-sm btn-block mb-2" type="button">
+                    <button class="btn btn-outline-danger btn-sm btn-block mb-2" type="button" @click="deleteCartItem(item.id)">
                     <i class="bi bi-trash-fill"></i>
                     刪除</button>
                 </div>
@@ -51,8 +51,7 @@ export default {
   data () {
     return {
       cartData: {},
-      productId: '',
-      isLoadingItem: ''
+      productId: ''
     }
   },
   methods: {
@@ -69,15 +68,11 @@ export default {
         product_id: item.id,
         qty: item.qty
       }
-      // 加入購物車的品項id的值賦予到isLoadingItem變數上 用來做後續判斷
-      this.isLoadingItem = item.id
       this.$http.put(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart/${item.id}`, { data }).then((res) => {
         // 顯示更新購物車提示訊息
         alert(res.data.message)
         // 再重新取得購物車內內容
         this.getCarts()
-        // 完成購物車內容渲染後 將isLoadingItem狀態改為預設
-        this.isLoadingItem = ''
       })
     },
     // 刪除全部購物車
@@ -86,6 +81,14 @@ export default {
         .then((res) => {
           this.getCarts()
           alert('購物車已刪除')
+        })
+    },
+    // 刪除購物車內單一品項
+    deleteCartItem (id) {
+      this.$http.delete(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart/${id}`)
+        .then((res) => {
+          this.getCarts()
+          alert(res.data.message)
         })
     }
   },
