@@ -82,10 +82,18 @@ export default {
       }
       this.$http.post(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`, { data })
         .then((res) => {
-          console.log(res)
+          this.getCarts()
           // 顯示已加入購物車提示訊息
           alert(res.data.message)
         })
+    },
+    // 取得購物車
+    getCarts () {
+      this.$http.get(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`).then((res) => {
+        this.cartData = res.data.data
+        // 觸發FrontNavbar上購物車圖示數量更新
+        emitter.emit('get-cart')
+      })
     }
   },
   computed: {
@@ -102,9 +110,6 @@ export default {
   },
   mounted () {
     this.getProducts()
-    emitter.on('get-cart', () => {
-      this.getCarts()
-    })
   }
 }
 </script>

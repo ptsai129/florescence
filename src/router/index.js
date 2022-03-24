@@ -30,8 +30,8 @@ const routes = [
         component: () => import('../views/FrontCart.vue')// 前台 購物車
       },
       {
-        path: 'order',
-        component: () => import('../views/FrontOrder.vue')// 前台 訂單
+        path: 'checkorder',
+        component: () => import('../views/FrontCheckorder.vue')// 前台 訂單
       }
     ]
   },

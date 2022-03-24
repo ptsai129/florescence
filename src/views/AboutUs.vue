@@ -42,7 +42,7 @@
             "
           ></div>
         </div>
-        <div class="col-12 col-lg-7"  data-aos="fade-right">
+        <div class="col-12 col-lg-7" data-aos="fade-right">
           <h2 class="fw-bold text-secondary mt-5">服務項目</h2>
           <p class="fs-4 text-secondary mt-3">
             我們致力於提供高品質的花藝設計服務
@@ -59,32 +59,50 @@
       </div>
     </div>
   </div>
-  <div class="bg-secondary">
-   <h3 class="text-primary text-center fw-bold py-4">聯絡我們</h3>
-   <div class="container pb-5">
-   <div class="row justify-content-center">
-   <div class="col-11 col-lg-8 bg-light">
-   <div class="mb-3 px-3 pt-3">
-  <label for="name" class="form-label">姓名</label>
-  <input type="text" class="form-control" id="name" placeholder="name@example.com">
-</div>
-   <div class="mb-3 px-3">
-  <label for="phonenumber" class="form-label">電話</label>
-  <input type="tel" class="form-control" id="phonenumber" placeholder="09xx-xxx-xxx">
-</div>
-  <div class="mb-3 px-3">
-  <label for="emailaddress" class="form-label">電子信箱</label>
-  <input type="email" class="form-control" id="emailaddress" placeholder="name@example.com">
-</div>
-<div class="mb-3 px-3 pb-3">
-  <label for="exampleFormControlTextarea1" class="form-label">留言給我們</label>
-  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-  <button type="submit" class="btn btn-secondary mt-3 ">送出表單</button>
-</div>
-
-   </div>
-   </div>
-   </div>
-   </div>
+  <div class="container pb-5">
+    <h3 class="text-primary text-center fw-bold py-4">聯絡我們</h3>
+    <div class="row justify-content-center">
+      <div class="col-11 col-lg-8 bg-light">
+        <div class="mb-3 px-3 pt-3">
+          <label for="name" class="form-label">姓名</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            placeholder="name@example.com"
+          />
+        </div>
+        <div class="mb-3 px-3">
+          <label for="phonenumber" class="form-label">電話</label>
+          <input
+            type="tel"
+            class="form-control"
+            id="phonenumber"
+            placeholder="09xx-xxx-xxx"
+          />
+        </div>
+        <div class="mb-3 px-3">
+          <label for="emailaddress" class="form-label">電子信箱</label>
+          <input
+            type="email"
+            class="form-control"
+            id="emailaddress"
+            placeholder="name@example.com"
+          />
+        </div>
+        <div class="mb-3 px-3 pb-3">
+          <label for="exampleFormControlTextarea1" class="form-label"
+            >留言給我們</label
+          >
+          <textarea
+            class="form-control"
+            id="exampleFormControlTextarea1"
+            rows="3"
+          ></textarea>
+          <button type="submit" class="btn btn-secondary mt-3">送出表單</button>
+        </div>
+      </div>
+    </div>
+  </div>
   <router-view></router-view>
 </template>

@@ -2,7 +2,7 @@
 <div class="container py-5">
     <div class="row">
         <div class="col-lg-8  col-12">
-            <h1 class="fs-3 fw-bold text-light text-center px-4 py-3 bg-success">購物車清單</h1>
+            <h1 class="fs-3 fw-bold text-light text-center px-4 py-2 bg-success">購物車清單</h1>
             <!-- 商品項目 如果購物車內有資料才執行 -->
             <template v-if="cartLength">
             <div v-for="item in cartData.carts" :key="item.id"  class="d-sm-flex justify-content-between my-4 pb-4 border-bottom">
@@ -39,15 +39,18 @@
         </div>
         <!-- Sidebar-->
         <div class="col-lg-4 col-12 pt-3 pt-md-0">
-            <h2 class="fs-3 fw-bold text-light px-4 py-3 bg-success text-center">合計</h2>
-            <p class="h3 py-3">NT${{ cartData.total}}</p>
+            <h2 class="fs-3 fw-bold text-light px-4 py-2 bg-success text-center">合計</h2>
+            <p class="fs-4 mb-0">商品金額: NT${{ cartData.total}}</p>
+            <p class="fs-4 text-dark">運費: 免運費</p>
+            <p class="fs-4 fw-bold text-secondary">小計: NT${{ cartData.total}}</p>
             <hr>
              <button class="btn btn-outline-danger me-2 mb-lg-0 mb-md-2" type="button" @click="deleteAll">
-              清空購物車
+               <i class="bi bi-trash-fill"></i>清空購物車
             </button>
-            <router-link class="btn btn-secondary btn-block" to="/order">
-            <i class="bi bi-card-heading"></i>
-             建立訂單</router-link>
+            <!--購物車內沒商品不能點擊確認購物車按鈕-->
+            <router-link class="btn btn-secondary btn-block" to="/checkorder" :disabled="cartLength==0">
+            <i class="bi bi-clipboard-check"></i>
+             確認購物車</router-link>
         </div>
     </div>
 </div>
@@ -71,8 +74,7 @@ export default {
       this.$http.get(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`).then((res) => {
         this.cartData = res.data.data
         this.cartLength = res.data.data.carts.length
-        // 更新購物車圖示數字
-        console.log(this.cartData)
+        // 觸發FrontNavbar上購物車圖示數量更新
         emitter.emit('get-cart')
       })
     },

@@ -112,7 +112,16 @@ export default {
       }
     }
   },
+  methods: {
+    // 取得購物車
+    getCarts () {
+      this.$http.get(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`).then((res) => {
+        this.cartData = res.data.data
+      })
+    }
+  },
   mounted () {
+    // 接受產品列表(FrontProducts),購物車頁面(FrontCart),單一產品(FrontProduct)的事件觸發
     emitter.on('get-cart', () => {
       this.getCarts()
     })

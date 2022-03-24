@@ -38,12 +38,16 @@
 </template>
 
 <script>
+import emitter from '@/methods/mitt'
 export default {
   data () {
     return {
       product: [],
       id: '',
-      qty: '1'
+      qty: '1',
+      cartData: {
+        carts: []
+      }
     }
   },
   methods: {
@@ -64,8 +68,8 @@ export default {
       }
       this.$http.post(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`, { data })
         .then((res) => {
-          console.log(res)
-          // 顯示已加入購物車提示訊息
+          // 觸發購物車圖示數字變動
+          emitter.emit('get-cart')
           alert(res.data.message)
         }).catch((err) => {
           console.log(err.response)
