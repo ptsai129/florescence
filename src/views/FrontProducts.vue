@@ -52,12 +52,16 @@
 </style>
 
 <script>
+import emitter from '@/methods/mitt'
 export default {
   data () {
     return {
       products: [],
       input: {
         type: '全部'
+      },
+      cartData: {
+        carts: []
       }
     }
   },
@@ -98,6 +102,9 @@ export default {
   },
   mounted () {
     this.getProducts()
+    emitter.on('get-cart', () => {
+      this.getCarts()
+    })
   }
 }
 </script>

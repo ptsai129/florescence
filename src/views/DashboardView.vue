@@ -8,7 +8,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-         <router-link to="/admin/products" class="nav-link">產品管理</router-link>
+         <router-link to="/admin" class="nav-link">產品管理</router-link>
         </li>
         <li class="nav-item">
           <router-link to="/admin/order" class="nav-link">訂單管理</router-link>

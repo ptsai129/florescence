@@ -19,13 +19,12 @@
           <div class="row align-items-center">
             <div class="col-6">
              <select class="form-control text-center" v-model="qty">
-             <option value="1">1件商品</option>
+             <option value="1" selected>1件商品</option>
              <option value="2">2件商品</option>
              <option value="3">3件商品</option>
              <option value="4">4件商品</option>
              <option value="5">5件商品</option>
              </select>
-             {{this.qty}}
             </div>
             <div class="col-6">
               <button class="text-nowrap btn btn-secondary w-100 py-2 rounded" @click="addToCart(qty)">加入購物車</button>
@@ -44,7 +43,7 @@ export default {
     return {
       product: [],
       id: '',
-      qty: ''
+      qty: '1'
     }
   },
   methods: {
@@ -57,16 +56,19 @@ export default {
     },
     // 加入購物車
     addToCart (qty = 1) {
+      const num = parseInt(qty)
       // 定義要帶入api的資訊
       const data = {
         product_id: this.id,
-        qty
+        qty: num
       }
       this.$http.post(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`, { data })
         .then((res) => {
           console.log(res)
           // 顯示已加入購物車提示訊息
           alert(res.data.message)
+        }).catch((err) => {
+          console.log(err.response)
         })
     }
   },

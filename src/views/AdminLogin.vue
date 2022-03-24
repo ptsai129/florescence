@@ -51,7 +51,7 @@ export default {
         .then((response) => {
           const { token, expired } = response.data
           document.cookie = `myToken=${token};expires=${new Date(expired)}`
-          this.$router.push('/admin/products')
+          this.$router.push('/admin')
         })
         .catch((err) => {
           alert(err.response.data.message)

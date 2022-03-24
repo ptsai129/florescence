@@ -4,7 +4,7 @@
         <div class="col-lg-8  col-12">
             <h1 class="fs-3 fw-bold text-light text-center px-4 py-3 bg-success">購物車清單</h1>
             <!-- 商品項目 如果購物車內有資料才執行 -->
-            <template v-if="cartData.carts">
+            <template v-if="cartLength">
             <div v-for="item in cartData.carts" :key="item.id"  class="d-sm-flex justify-content-between my-4 pb-4 border-bottom">
                 <div class="d-sm-flex text-center text-md-start">
                      <div class="mx-auto" :style="{backgroundImage:`url(${item.product.imageUrl})`}" style="height:240px; width:240px; background-size:cover; background-position:center center"></div>
@@ -29,6 +29,13 @@
                 </div>
             </div>
             </template>
+            <!-- 商品項目 如果購物車內沒有資料顯示 -->
+            <template v-else>
+            <div class="d-flex flex-column align-items-center justify-content-center mb-3" style="background-Image:url(https://images.unsplash.com/photo-1486306885345-1256d25cd259?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80); height:500px; background-position:bottom center;">
+            <p class="fw-bold fs-3 text-light text-center">購物車內沒有商品</p>
+            <router-link class="btn btn-outline-primary text-secondary" to="/shopflowers">前往購物</router-link>
+            </div>
+            </template>
         </div>
         <!-- Sidebar-->
         <div class="col-lg-4 col-12 pt-3 pt-md-0">
@@ -38,20 +45,24 @@
              <button class="btn btn-outline-danger me-2 mb-lg-0 mb-md-2" type="button" @click="deleteAll">
               清空購物車
             </button>
-            <a class="btn btn-secondary btn-block" href="#">
+            <router-link class="btn btn-secondary btn-block" to="/order">
             <i class="bi bi-card-heading"></i>
-             建立訂單</a>
+             建立訂單</router-link>
         </div>
     </div>
 </div>
 </template>
 
 <script>
+import emitter from '@/methods/mitt'
 export default {
   data () {
     return {
-      cartData: {},
-      productId: ''
+      cartData: {
+        carts: []
+      },
+      productId: '',
+      cartLength: ''
     }
   },
   methods: {
@@ -59,6 +70,10 @@ export default {
     getCarts () {
       this.$http.get(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`).then((res) => {
         this.cartData = res.data.data
+        this.cartLength = res.data.data.carts.length
+        // 更新購物車圖示數字
+        console.log(this.cartData)
+        emitter.emit('get-cart')
       })
     },
     // 更新購物車 帶入完整品項資料

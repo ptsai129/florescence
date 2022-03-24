@@ -15,7 +15,7 @@ const routes = [
       },
       {
         path: 'shopflowers',
-        component: () => import('../views/ShopFlowers.vue') // 前台 選購花禮
+        component: () => import('../views/FrontProducts.vue') // 前台 選購花禮
       },
       {
         path: 'product/:id',
@@ -23,29 +23,33 @@ const routes = [
       },
       {
         path: 'faq',
-        component: () => import('../views/FrequentlyAskedQuestions.vue')// 前台 訂花需知
+        component: () => import('../views/FrontFaq.vue')// 前台 訂花需知
       },
       {
         path: 'cart',
         component: () => import('../views/FrontCart.vue')// 前台 購物車
+      },
+      {
+        path: 'order',
+        component: () => import('../views/FrontOrder.vue')// 前台 訂單
       }
     ]
   },
   {
     path: '/login',
-    component: () => import('../views/AdminLogin.vue')
+    component: () => import('../views/AdminLogin.vue') // 後台登入
   },
   {
     path: '/admin',
-    component: () => import('../views/DashboardView.vue'),
+    component: () => import('../views/DashboardView.vue'), // 後台
     children: [
       {
-        path: 'products',
-        component: () => import('../views/AdminProducts.vue') // 後台 產品
+        path: '',
+        component: () => import('../views/AdminProducts.vue') // 後台 產品管理
       },
       {
         path: 'order',
-        component: () => import('../views/AdminOrders.vue') // 後台 產品
+        component: () => import('../views/AdminOrders.vue') // 後台 訂單管理
       }
     ]
   },
