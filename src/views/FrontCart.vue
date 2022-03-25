@@ -48,9 +48,9 @@
                <i class="bi bi-trash-fill"></i>清空購物車
             </button>
             <!--購物車內沒商品不能點擊確認購物車按鈕-->
-            <router-link class="btn btn-secondary btn-block" to="/checkorder" :disabled="cartLength==0">
+            <button class="btn btn-secondary btn-block" to="/checkorder" :disabled="cartLength==0" @click="toCheckorder()">
             <i class="bi bi-clipboard-check"></i>
-             確認購物車</router-link>
+             確認購物車</button>
         </div>
     </div>
 </div>
@@ -107,6 +107,10 @@ export default {
           this.getCarts()
           alert(res.data.message)
         })
+    },
+    toCheckorder () {
+      // 購物車內有商品才會可以被點擊並且跳轉到訂單填寫頁面
+      this.$router.push('/checkorder')
     }
   },
   mounted () {

@@ -31,7 +31,11 @@ const routes = [
       },
       {
         path: 'checkorder',
-        component: () => import('../views/FrontCheckorder.vue')// 前台 訂單
+        component: () => import('../views/FrontCheckorder.vue')// 前台 訂單填寫
+      },
+      {
+        path: 'payment',
+        component: () => import('../views/FrontPayment.vue') // 前台 付款頁面
       }
     ]
   },

@@ -121,7 +121,7 @@ export default {
     }
   },
   mounted () {
-    // 接受產品列表(FrontProducts),購物車頁面(FrontCart),單一產品(FrontProduct)的事件觸發
+    // 接收產品列表(FrontProducts),購物車頁面(FrontCart),單一產品(FrontProduct)的事件觸發
     emitter.on('get-cart', () => {
       this.getCarts()
     })

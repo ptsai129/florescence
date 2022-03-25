@@ -1,7 +1,7 @@
 <template>
   <div class="container py-5">
     <div class="row">
-      <div class="col-12 col-md-5">
+      <div class="col-12 col-md-6">
         <h1 class="fs-3 fw-bold text-light text-center px-4 py-2 bg-success">
           確認訂單內容
         </h1>
@@ -26,50 +26,47 @@
         </ul>
         <p class="fs-4 text-secondary fw-bold">合計金額: NT$ {{ cartData.total}}</p>
       </div>
-      <div class="col-12 col-md-7">
+      <div class="col-12 col-md-6">
         <h2 class="fs-3 fw-bold text-light px-4 py-2 bg-success text-center">
           填寫訂購資訊
         </h2>
-        <form class="mt-3 bg-light p-3">
-        <h3 class="mb-3 text-center text-secondary">訂購人資料</h3>
-       <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">訂購人姓名</label>
-     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-     </div>
+    <v-form ref="form" class="mt-3 bg-light p-3" v-slot="{ errors }" @submit="onSubmit" >
             <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">訂購人手機號碼</label>
-     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-     </div>
+              <label for="email" class="form-label">Email</label>
+              <v-field id="email" name="email" type="email" class="form-control"
+                       :class="{ 'is-invalid': errors['email'] }" placeholder="請輸入 Email"
+                       v-model="form.user.email" ></v-field>
+              <error-message name="email" class="invalid-feedback"></error-message>
+            </div>
             <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">訂購人電子郵件</label>
-     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-     </div>
-           <h3 class="mb-3 text-center text-secondary">收件人資料</h3>
+              <label for="name" class="form-label">收件人姓名</label>
+              <v-field id="name" name="姓名" type="text" class="form-control" :class="{ 'is-invalid': errors['姓名'] }"
+                       placeholder="請輸入姓名" rules="required" v-model="form.user.name"></v-field>
+              <error-message name="姓名" class="invalid-feedback"></error-message>
+            </div>
             <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">收件人姓名</label>
-     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-     </div>
-            <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">收件人手機號碼</label>
-     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-     </div>
-                 <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">收件人地址</label>
-     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-     </div>
-     <div class="mb-3">
-  <label for="exampleFormControlTextarea1" class="form-label">備註</label>
-  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-</div>
-  <button type="submit" class="btn btn-secondary w-100 my-3">送出訂單</button>
-</form>
+              <label for="tel" class="form-label">收件人電話</label>
+              <v-field id="tel" name="電話" type="text" class="form-control" :class="{ 'is-invalid': errors['電話'] }"
+                       placeholder="請輸入電話" v-model="form.user.tel"  :rules="isPhone"></v-field>
+              <error-message name="電話" class="invalid-feedback"></error-message>
+            </div>
 
+            <div class="mb-3">
+              <label for="address" class="form-label">收件人地址</label>
+              <v-field id="address" name="地址" type="text" class="form-control" :class="{ 'is-invalid': errors['地址'] }"
+                       placeholder="請輸入地址" rules="required" v-model="form.user.address" ></v-field>
+              <error-message name="地址" class="invalid-feedback"></error-message>
+            </div>
+
+            <div class="mb-3">
+              <label for="message" class="form-label">留言</label>
+              <textarea id="message" class="form-control" cols="30" rows="10" v-model="form.message"></textarea>
+            </div>
+            <div class="text-end">
+              <button type="submit" class="btn btn-danger"
+                      >送出訂單</button>
+            </div>
+          </v-form>
       </div>
     </div>
   </div>
@@ -82,7 +79,17 @@ export default {
     return {
       cartData: {
         carts: []
-      }
+      },
+      form: {
+        user: {
+          name: '',
+          email: '',
+          tel: '',
+          address: ''
+        },
+        message: ''
+      },
+      orderedId: ''
     }
   },
   methods: {
@@ -95,6 +102,37 @@ export default {
           // 觸發FrontNavbar上購物車圖示數量更新
           emitter.emit('get-cart')
         })
+    },
+    // 驗證電話號碼
+    isPhone (value) {
+      const phoneNumber = /^(09)[0-9]{8}$/
+      return phoneNumber.test(value) ? true : '需要正確的電話號碼'
+    },
+    // 送出表單
+    onSubmit () {
+      const order = this.form
+      this.$http.post(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/order`, { data: order })
+        .then((res) => {
+          this.orderedId = res.data.orderId
+          alert(res.data.message)
+          // 清空表單
+          this.$refs.form.resetForm()
+          // 清空textarea
+          this.form.message = ''
+          // 重新渲染購物車並更新購物車上icon數字
+          this.getCarts()
+          // 傳送訂單資訊到FrontPayment頁面
+          emitter.emit('get-orderId', this.orderedId)
+          // 跳轉到付款頁面
+          this.toPayment()
+        })
+        .catch((error) => {
+          alert(error.message)
+        })
+    },
+    toPayment () {
+      // 購物車內有商品才會可以被點擊並且跳轉到訂單填寫頁面
+      this.$router.push('/payment')
     }
   },
   mounted () {
