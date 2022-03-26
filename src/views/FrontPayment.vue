@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import emitter from '@/methods/mitt'
 export default {
   data () {
     return {
@@ -28,13 +27,8 @@ export default {
     }
   },
   mounted () {
-    // 接收訂單確認頁面(FrontCheckOrder)的事件觸發
-    emitter.on('get-orderId', (order) => {
-      console.log('有收到', order)
-      this.orderId = order
-      console.log(this.orderId)
-    })
-    // 執行取得特定訂單資料
+    // 把路由上的orderedId存到data的orderId內
+    this.orderId = this.$route.params.orderedId
     this.getOrderInfo()
   }
 }

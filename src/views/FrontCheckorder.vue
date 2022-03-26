@@ -121,8 +121,6 @@ export default {
           this.form.message = ''
           // 重新渲染購物車並更新購物車上icon數字
           this.getCarts()
-          // 傳送訂單資訊到FrontPayment頁面
-          emitter.emit('get-orderId', this.orderedId)
           // 跳轉到付款頁面
           this.toPayment()
         })
@@ -131,8 +129,7 @@ export default {
         })
     },
     toPayment () {
-      // 購物車內有商品才會可以被點擊並且跳轉到訂單填寫頁面
-      this.$router.push('/payment')
+      this.$router.push(`/payment/${this.orderedId}`)
     }
   },
   mounted () {

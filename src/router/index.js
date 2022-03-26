@@ -34,7 +34,7 @@ const routes = [
         component: () => import('../views/FrontCheckorder.vue')// 前台 訂單填寫
       },
       {
-        path: 'payment',
+        path: 'payment/:orderedId',
         component: () => import('../views/FrontPayment.vue') // 前台 付款頁面
       }
     ]
@@ -66,7 +66,15 @@ const routes = [
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
-  linkActiveClass: 'active' // Bootstrap
+  linkActiveClass: 'active', // Bootstrap
+  scrollBehavior (to, from, savedPosition) {
+    if (to.fullPath.match('newPage')) {
+      return {
+        top: 0 // 在切換不同頁面時 仍會保持在最上面的位置
+      }
+    }
+    return {}
+  }
 })
 
 export default router

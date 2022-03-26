@@ -6,7 +6,7 @@
       <h1 class="fs-2 fw-bold text-light">讓花的香氣和美好，走進你的生活裡</h1>
     </div>
   </div>
-   <div class="popular-product container-fluid bg-light">
+  <div class="popular-product container-fluid bg-light">
     <div class="container">
       <h2 class="fs-3 py-3 pt-md-4 pb-md-3 mb-0 text-secondary fw-bold">
         熱門花禮
@@ -42,11 +42,11 @@
         </div>
         <div class="col-md-4 pt-3 pb-5">
           <div class="popular-item position-relative">
-             <router-link to="/shopflowers">
+            <router-link to="/shopflowers">
               <img
                 class="img-fluid object-cover"
                 src="../assets/images/pottedFlowers-1.jpg"
-              /></router-link>
+            /></router-link>
             <div
               class="popular-txt position-absolute top-50 start-50 translate-middle"
             >
@@ -66,13 +66,13 @@
         <div class="col-12 col-md-6 col-lg-4">
           <div class="pic">
             <img
-              class="img-fluid  object-cover"
+              class="img-fluid object-cover"
               src="../assets/images/intro-photo.jpg"
               alt=""
             />
           </div>
         </div>
-        <div class="col-12 col-md-6 col-lg-8 bg-light" >
+        <div class="col-12 col-md-6 col-lg-8 bg-light">
           <div class="intro-text" data-aos="fade-down">
             <p class="fs-5">
               Florescence，是英文中花期全盛期的意思，希望將花綻放盛開後，最美的時期，帶給所有人。
@@ -91,23 +91,29 @@
   </div>
   <div class="bg-primary">
     <div class="container">
-      <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center align-items-start py-3">
+      <div
+        class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center align-items-start py-3"
+      >
         <p class="fs-4 mb-0 fw-bold text-secondary">訂閱我們獲得最新消息</p>
-        <div class="input-group w-75 mt-md-0 mt-3 ">
-          <input
-            type="text"
-            class="form-control rounded-0 "
-            placeholder="請輸入您的電子郵件地址"
-          />
-          <div class="input-group-append">
-            <button class="btn btn-secondary" type="button" id="search">
-              訂閱
-            </button>
-          </div>
+          <v-form class="input-group w-75 mt-md-0 mt-3" ref="form" v-slot="{ errors }" @submit="onSubmit">
+            <v-field
+              id="email"
+              name="email"
+              type="email"
+              class="form-control rounded-0"
+              :class="{ 'is-invalid': errors['email'] }"
+              placeholder="請輸入 Email"
+              rules="email|required"
+              v-model="form.user.email"
+            ></v-field><button class="btn btn-secondary" type="submit" id="search">訂閱</button>
+            <error-message
+              name="email"
+              class="invalid-feedback"
+            ></error-message>
+          </v-form>
         </div>
       </div>
-      </div>
-    </div>
+  </div>
   <router-view></router-view>
 </template>
 
@@ -189,10 +195,25 @@
 .pic img:hover {
   transform: scale(1.2, 1.2);
 }
-
 </style>
 
 <script>
 export default {
+  data () {
+    return {
+      form: {
+        user: {
+          email: ''
+        }
+      }
+    }
+  },
+  methods: {
+    // 送出訂閱資料
+    onSubmit () {
+      // 清空表單
+      this.$refs.form.resetForm()
+    }
+  }
 }
 </script>

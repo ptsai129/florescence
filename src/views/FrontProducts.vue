@@ -19,7 +19,7 @@
       >
         <div class="card h-100 border-primary" data-aos="fade-up">
           <router-link  :to="`/product/${product.id}`"  :style="{backgroundImage:`url(${product.imageUrl})`}" style="height:300px; background-size:cover; background-position:center center" class="position-relative">
-          </router-link>
+             </router-link>
           <span class="badge bg-secondary fs-6 p-2 position-absolute">{{product.category}}</span>
           <div class="card-body bg-light text-secondary ">
             <h5 class="card-title">{{ product.title }}</h5>
