@@ -87,7 +87,7 @@ export default {
       }
       this.$http.put(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart/${item.id}`, { data }).then((res) => {
         // 顯示更新購物車提示訊息
-        alert(res.data.message)
+        this.$swal('已更新數量')
         // 再重新取得購物車內內容
         this.getCarts()
       })
@@ -97,7 +97,7 @@ export default {
       this.$http.delete(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/carts`)
         .then((res) => {
           this.getCarts()
-          alert('購物車已刪除')
+          this.$swal('購物車已清空')
         })
     },
     // 刪除購物車內單一品項
@@ -105,11 +105,12 @@ export default {
       this.$http.delete(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart/${id}`)
         .then((res) => {
           this.getCarts()
-          alert(res.data.message)
+          this.$swal('已刪除商品')
         })
     },
     toCheckorder () {
       // 購物車內有商品才會可以被點擊並且跳轉到訂單填寫頁面
+      this.$swal('完成購物車確認')
       this.$router.push('/checkorder')
     }
   },

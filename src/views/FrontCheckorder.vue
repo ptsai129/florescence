@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-12 col-md-6">
         <h1 class="fs-3 fw-bold text-light text-center px-4 py-2 bg-success">
-          確認訂單內容
+          訂單明細
         </h1>
         <ul class="list-unstyled mt-3" v-for="item in cartData.carts" :key="item.id">
           <li class="d-flex">
@@ -28,7 +28,7 @@
       </div>
       <div class="col-12 col-md-6">
         <h2 class="fs-3 fw-bold text-light px-4 py-2 bg-success text-center">
-          填寫訂購資訊
+          訂購資訊填寫
         </h2>
     <v-form ref="form" class="mt-3 bg-light p-3" v-slot="{ errors }" @submit="onSubmit" >
             <div class="mb-3">
@@ -114,7 +114,7 @@ export default {
       this.$http.post(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/order`, { data: order })
         .then((res) => {
           this.orderedId = res.data.orderId
-          alert(res.data.message)
+          this.$swal('已送出訂單')
           // 清空表單
           this.$refs.form.resetForm()
           // 清空textarea

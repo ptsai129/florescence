@@ -214,6 +214,8 @@ export default {
       // 清空表單
       this.$refs.form.resetForm()
     }
+  },
+  mounted () {
   }
 }
 </script>

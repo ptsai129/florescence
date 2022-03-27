@@ -18,7 +18,9 @@ import { required, email, min, max, numeric } from '@vee-validate/rules'
 import { localize, setLocale } from '@vee-validate/i18n'
 // import the locales from i18n JSON directory
 import zhTW from '@vee-validate/i18n/dist/locale/zh_TW.json'
-
+// 載入sweetalert2
+import VueSweetalert2 from 'vue-sweetalert2'
+import 'sweetalert2/dist/sweetalert2.min.css'
 import App from './App.vue'
 import router from './router'
 
@@ -45,6 +47,6 @@ app.use(VueAxios, axios)
 app.component('VForm', Form)
 app.component('VField', Field)
 app.component('ErrorMessage', ErrorMessage)
-
+app.use(VueSweetalert2)
 app.use(router)
 app.mount('#app')

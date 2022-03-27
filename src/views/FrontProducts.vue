@@ -84,7 +84,7 @@ export default {
         .then((res) => {
           this.getCarts()
           // 顯示已加入購物車提示訊息
-          alert(res.data.message)
+          this.$swal('已加入購物車')
         })
     },
     // 取得購物車

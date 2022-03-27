@@ -70,7 +70,7 @@ export default {
         .then((res) => {
           // 觸發購物車圖示數字變動
           emitter.emit('get-cart')
-          alert(res.data.message)
+          this.$swal('商品已加入購物車')
         }).catch((err) => {
           console.log(err.response)
         })
