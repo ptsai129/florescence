@@ -1,17 +1,17 @@
 <template>
 <div
-    id="DelProductModal"
+    id="delModal"
     ref="modal"
     class="modal fade"
     tabindex="-1"
-    aria-labelledby="delProductModalLabel"
+    aria-labelledby="delModalLabel"
     aria-hidden="true"
   >
     <div class="modal-dialog">
       <div class="modal-content border-0">
         <div class="modal-header bg-danger text-white">
-          <h5 id="delProductModalLabel" class="modal-title">
-            <span>刪除產品</span>
+          <h5 id="delModalLabel" class="modal-title">
+            <span>刪除{{ item.title }}</span>
           </h5>
           <button
             type="button"
@@ -23,7 +23,7 @@
         <div class="modal-body">
           是否刪除
           <strong class="text-danger">{{ item.title }}</strong>
-          商品(刪除後將無法恢復)。
+          (刪除後將無法恢復)。
         </div>
         <div class="modal-footer">
           <button
@@ -33,7 +33,7 @@
           >
             取消
           </button>
-          <button type="button" class="btn btn-danger" @click="deleteProduct">
+          <button type="button" class="btn btn-danger"  @click="$emit('del-item')">
             確認刪除
           </button>
         </div>
@@ -46,26 +46,17 @@
 import Modal from 'bootstrap/js/dist/modal'
 export default {
   props: ['item'],
+  emits: ['del-item'],
   methods: {
     showModal () {
-      this.delProductModal.show()
+      this.delModal.show()
     },
     hideModal () {
-      this.delProductModal.hide()
-    },
-    deleteProduct () {
-      this.$http.delete(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/product/${this.item.id}`)
-        .then((res) => {
-          this.$emit('getProductList')
-          alert(res.data.message)
-          this.hideModal()
-        }).catch((err) => {
-          alert(err.data.message)
-        })
+      this.delModal.hide()
     }
   },
   mounted () {
-    this.delProductModal = new Modal(this.$refs.modal, {
+    this.delModal = new Modal(this.$refs.modal, {
       keyboard: false,
       backdrop: 'static'
     })

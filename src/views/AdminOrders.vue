@@ -6,9 +6,9 @@
       <tr>
         <th>購買時間</th>
         <th>Email</th>
-        <th>購買款項</th>
+        <th>購買品項</th>
         <th>應付金額</th>
-        <th>是否付款</th>
+        <th>付款狀態</th>
         <th>編輯</th>
       </tr>
     </thead>
@@ -37,33 +37,55 @@
           </td>
           <td>
             <div class="btn-group">
-              <button
-                class="btn btn-outline-primary btn-sm"
-                type="button"
+                          <button
+                class="btn btn-outline-danger btn-sm me-1"
+                type="button"     @click="openDelModal(order)"
               >
-                檢視
+                刪除訂單
               </button>
               <button
-                class="btn btn-outline-danger btn-sm"
-                type="button"
+                class="btn btn-primary btn-sm "
+                type="button" @click="openModal(order)"
               >
-                刪除
+                檢視訂單
               </button>
+
             </div>
           </td>
         </tr>
       </template>
     </tbody>
   </table>
- </div>
+    <!-- 頁數元件-->
+    <Pagination
+      :pages="pagination"
+      @get-page="getOrders"
+    ></Pagination>
+  </div>
+  <!--刪除Modal -->
+  <DeleteModal :item="tempOrder"
+    ref="delModal"  @del-item="deleteOrder"
+  ></DeleteModal>
+  <!--修改Modal-->
+  <OrderModal :order="tempOrder" ref="orderModal" @change-paid="changePaid"></OrderModal>
+
 </template>
 
 <script>
+import Pagination from '@/components/PaginationView.vue'
+import DeleteModal from '@/components/DelModal.vue'
+import OrderModal from '@/components/AdminOrderModal.vue'
 export default {
+  components: {
+    Pagination,
+    DeleteModal,
+    OrderModal
+  },
   data () {
     return {
       orders: {},
-      pagination: {}
+      pagination: {},
+      tempOrder: {}
     }
   },
   methods: {
@@ -72,11 +94,46 @@ export default {
       const getOrdersUrl = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/orders?page=${page}`
       this.$http.get(getOrdersUrl).then((res) => {
         this.orders = res.data.orders
-        console.log(this.orders)
         this.pagination = res.data.pagination
-        console.log(this.pagination)
       }).catch((err) => {
         console.log(err.messages)
+      })
+    },
+    // 打開檢視訂單modal
+    openModal (order) {
+      this.tempOrder = { ...order }
+      this.$refs.orderModal.showModal()
+    },
+    // 打開刪除訂單modal
+    openDelModal (order) {
+      this.tempOrder = { ...order }
+      this.$refs.delModal.showModal()
+    },
+    // 刪除特定訂單
+    deleteOrder () {
+      const delOrderUrl = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/order/${this.tempOrder.id}`
+      this.$http.delete(delOrderUrl).then((res) => {
+        this.getOrders()
+        this.$refs.delModal.hideModal()
+        this.$swal('已刪除訂單')
+      }).catch((err) => {
+        console.log(err)
+      })
+    },
+    // 更新訂單狀態
+    changePaid (order) {
+      const changeOrderUrl = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/order/${this.tempOrder.id}`
+      // 將目前付款狀態儲存到payStatus變數上
+      const payStatus = {
+        is_paid: order.is_paid
+      }
+      this.$http.put(changeOrderUrl, { data: payStatus }).then((res) => {
+        console.log(res)
+        this.$refs.orderModal.hideModal()
+        this.getOrders()
+        this.$swal('付款狀態已更新')
+      }).catch((err) => {
+        console.log(err)
       })
     }
   },

@@ -14,11 +14,11 @@
       <div class="row justify-content-center">
         <div class="col-md-4 pt-3 pb-5">
           <div class="popular-item position-relative">
-            <router-link to="/shopflowers"
-              ><img
+            <a href="#"  @click.prevent="goProductsPage('鮮花')">
+              <img
                 class="img-fluid object-cover"
                 src="../assets/images/flowers-1.jpg"
-            /></router-link>
+            /></a>
             <div
               class="popular-txt position-absolute top-50 start-50 translate-middle"
             >
@@ -28,11 +28,11 @@
         </div>
         <div class="col-md-4 pt-3 pb-5">
           <div class="popular-item position-relative">
-            <router-link to="/shopflowers">
+            <a href="#"  @click.prevent="goProductsPage('花束')">
               <img
                 class="img-fluid object-cover"
                 src="../assets/images/bouquet-1.jpg"
-            /></router-link>
+            /></a>
             <div
               class="popular-txt position-absolute top-50 start-50 translate-middle"
             >
@@ -42,11 +42,11 @@
         </div>
         <div class="col-md-4 pt-3 pb-5">
           <div class="popular-item position-relative">
-            <router-link to="/shopflowers">
+            <a href="#"  @click.prevent="goProductsPage('盆花')">
               <img
                 class="img-fluid object-cover"
                 src="../assets/images/pottedFlowers-1.jpg"
-            /></router-link>
+            /></a>
             <div
               class="popular-txt position-absolute top-50 start-50 translate-middle"
             >
@@ -209,10 +209,15 @@ export default {
     }
   },
   methods: {
+    // 點擊其中一個產品類別圖片 會帶參數到路由上
+    goProductsPage (type) {
+      this.$router.push(`/shopflowers?cate=${type}`)
+    },
     // 送出訂閱資料
     onSubmit () {
       // 清空表單
       this.$refs.form.resetForm()
+      this.$swal('已完成訂閱')
     }
   },
   mounted () {

@@ -55,7 +55,7 @@
     <!-- 頁數元件 前內(update)後外(getProductsList)  -->
     <Pagination
       :pages="pagination"
-      @get-productlist="getProductsList"
+      @get-page="getProductsList"
     ></Pagination>
   </div>
   <!-- 新增&編輯產品元件 -->
@@ -65,13 +65,13 @@
   ></product-modal>
   <!--刪除Modal -->
   <DeleteModal :item="tempProduct"
-   @getProductList="getProductsList"
-    ref="delProductModal"
+   @del-item="deleteProduct"
+    ref="delModal"
   ></DeleteModal>
 </template>
 
 <script>
-import DeleteModal from '@/components/DelProductModal.vue'
+import DeleteModal from '@/components/DelModal.vue'
 import Pagination from '@/components/PaginationView.vue'
 import ProductModal from '@/components/AdminProductModal.vue'
 export default {
@@ -98,7 +98,6 @@ export default {
         const { products, pagination } = res.data
         this.products = products
         this.pagination = pagination
-        console.log('取得產品列表')
       })
     },
     openModal (state, item) {
@@ -122,8 +121,19 @@ export default {
         }
       } else if (state === 'delete') {
         this.tempProduct = { ...item }
-        this.$refs.delProductModal.showModal()
+        this.$refs.delModal.showModal()
       }
+    },
+    // 刪除特定品項
+    deleteProduct () {
+      this.$http.delete(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/product/${this.tempProduct.id}`)
+        .then((res) => {
+          this.getProductsList()
+          this.$refs.delModal.hideModal()
+          this.$swal('已刪除產品')
+        }).catch((err) => {
+          alert(err.message)
+        })
     }
   },
   mounted () {

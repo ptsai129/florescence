@@ -6,7 +6,7 @@
   </div>
   <div class="container mt-md-5 mt-3 mb-7">
     <select v-model="input.type" class="form-select w-25 mb-5" aria-label="Default select example">
-      <option value="全部" selected>全部</option>
+      <option value="全部" selected>全部商品</option>
       <option value="鮮花">鮮花</option>
       <option value="花束">花束</option>
       <option value="盆花">盆花</option>
@@ -110,6 +110,12 @@ export default {
   },
   mounted () {
     this.getProducts()
+    // 把路由上的type存到data的input的type內
+    if (this.$route.query.cate === undefined) {
+      this.input.type = '全部'
+    } else {
+      this.input.type = this.$route.query.cate
+    }
   }
 }
 </script>
