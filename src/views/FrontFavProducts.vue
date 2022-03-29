@@ -2,7 +2,7 @@
   <div class="container mt-md-5 mt-3 mb-7">
     <h1 class="text-center fs-3 text-secondary fw-bold my-3">收藏的商品</h1>
     <div class="row">
-      <template v-if="filteredItem">
+      <template v-if="filteredItem.length!==0">
       <div
         class="col-md-6 col-lg-3 mb-3 mb-md-5"
         v-for="product in filteredItem"
@@ -31,8 +31,10 @@
       </div>
       </template>
       <template v-else>
-            <p class="fw-bold fs-3 text-light text-center">沒有收藏商品</p>
+            <div class="d-flex flex-column align-items-center justify-content-center mb-3" style="background-Image:url(https://images.unsplash.com/photo-1486306885345-1256d25cd259?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80); height:500px; background-position:bottom center;">
+            <p class="fw-bold fs-3 text-light text-center">目前沒有收藏商品</p>
             <router-link class="btn btn-outline-primary text-secondary" to="/shopflowers">前往購物</router-link>
+            </div>
        </template>
     </div>
   </div>
