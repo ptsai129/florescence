@@ -14,8 +14,9 @@
         </div>
         <div class="col-12 col-md-6">
           <h1 class="fw-bold h1 mb-1"> {{ product.title }}</h1>
-          <p class="mb-0 text-muted text-end"><del>NT$ {{product.origin_price}}</del></p>
-          <p class="h4 fw-bold text-end">NT${{product.price}}</p>
+          <p class="mb-0 text-muted text-end"><del>原價 NT$ {{product.origin_price}}</del></p>
+          <p class="h4 fw-bold text-end">特價 NT${{product.price}}</p>
+          <p>{{product.description}}</p>
           <div class="row align-items-center">
             <div class="col-6">
              <select class="form-control text-center" v-model="qty">
@@ -31,12 +32,35 @@
             </div>
           </div>
           <small class="text-info mt-3">如需大量訂購，歡迎透過電話和我們討論</small>
-          <p>{{product.description}}</p>
         </div>
       </div>
       </div>
+<div class="container-fluid bg-info">
+<div class="container">
+<div class="row">
+<div class="col-12 col-md-6 p-5">
+<h2 class="fs-5 text-primary fw-bold mb-3">注意事項</h2>
+<ul class="list-unstyled text-primary fs-6">
+<li class="mb-2 "><i class="bi bi-chat-heart me-1"></i>全系列商品皆為手工製作，實際商品尺寸可能會與標示有些微誤差。</li>
+<li class="mb-2"><i class="bi bi-chat-heart me-1"></i>商品圖片僅供參考，鮮花花材、植栽、乾燥花材...等天然植物，其顏色及大小會隨季節和氣候變化。</li>
+<li class="mb-2"><i class="bi bi-chat-heart me-1"></i>遇臨時性的花材缺貨或品質不佳的情形，將以等值新鮮花材設計調整。</li>
+<li class="mb-2"><i class="bi bi-chat-heart me-1"></i>商品圖片中花器或配飾缺貨時，會以等值之花器、配飾替代。</li>
+<li class="mb-2"><i class="bi bi-chat-heart me-1"></i>特殊節日（如母親節、情人節），若花材價格高漲，商品售價將隨之調整。</li>
+</ul>
+</div>
+<div class="col-md-6 notice-bg d-none d-md-block">
+</div>
+</div>
+</div>
+</div>
 </template>
 
+<style lang="scss">
+.notice-bg{
+background-image: url(https://images.unsplash.com/photo-1587317997367-3d47566f9528?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80);
+background-position: center center;
+}
+</style>
 <script>
 import emitter from '@/methods/mitt'
 export default {

@@ -129,6 +129,7 @@ export default {
         })
     },
     toPayment () {
+      // 跳轉到付款頁面並帶上訂單id
       this.$router.push(`/payment/${this.orderedId}`)
     }
   },

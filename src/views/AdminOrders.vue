@@ -57,10 +57,13 @@
     </tbody>
   </table>
     <!-- 頁數元件-->
+    <div class="d-flex justify-content-between align-items-center">
     <Pagination
       :pages="pagination"
       @get-page="getOrders"
     ></Pagination>
+     <button  class="btn btn-outline-secondary" type="button" @click="deleteAllOrders()">刪除全部訂單</button>
+    </div>
   </div>
   <!--刪除Modal -->
   <DeleteModal :item="tempOrder"
@@ -132,6 +135,16 @@ export default {
         this.$refs.orderModal.hideModal()
         this.getOrders()
         this.$swal('付款狀態已更新')
+      }).catch((err) => {
+        console.log(err)
+      })
+    },
+    // 刪除全部訂單
+    deleteAllOrders () {
+      const delAllUrl = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/orders/all`
+      this.$http.delete(delAllUrl).then((res) => {
+        this.getOrders()
+        this.$swal('已刪除全部訂單')
       }).catch((err) => {
         console.log(err)
       })
