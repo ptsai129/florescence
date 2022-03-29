@@ -46,8 +46,8 @@ export default {
             this.checkSuccess = true
           })
           .catch((err) => {
+            console.log(err)
             // 登入失敗會跳出失敗訊息並跳回登入頁面
-            alert(err.data.message)
             this.$router.push('/login')
           })
       } else {
@@ -58,7 +58,7 @@ export default {
     logOut () {
       // 清除cookie
       document.cookie = 'myToken=;expires=;'
-      alert('已清除cookie')
+      this.$swal('已登出')
       this.$router.push('/login')
     }
   },

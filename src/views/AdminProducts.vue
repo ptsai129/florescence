@@ -111,7 +111,6 @@ export default {
         this.$refs.productModal.showModal()
         // 如果判斷帶入變數顯示狀態是修改
       } else if (state === 'edit') {
-        // 避免多圖新增、修改、刪除會傳參考修改到 item.imagesUrl
         this.tempProduct = { ...item }
         this.isNew = false
         // 操控productModal元件內的methods

@@ -17,7 +17,7 @@
       <template v-for="(order, key) in orders" :key="key">
        <!--如果訂單陣列有內容才跑-->
         <tr v-if="orders.length" >
-          <td>{{ order.create_at}}</td>
+          <td>{{ changeDate(order.create_at)}}</td>
           <td><span>{{ order.user.email }}</span></td>
           <td>
             <ul class="list-unstyled">
@@ -28,7 +28,7 @@
               </li>
             </ul>
           </td>
-          <td class="text-right">{{ order.total }}</td>
+          <td class="text-right">NT${{ changeNum(order.total) }}</td>
           <td>
             <div class="form-check form-switch">
             <input class="form-check-input rounded" type="checkbox" id="flexSwitchCheckChecked" :checked="order.is_paid == true " @change="order.is_paid = !order.is_paid">
@@ -131,7 +131,6 @@ export default {
         is_paid: order.is_paid
       }
       this.$http.put(changeOrderUrl, { data: payStatus }).then((res) => {
-        console.log(res)
         this.$refs.orderModal.hideModal()
         this.getOrders()
         this.$swal('付款狀態已更新')
@@ -148,6 +147,16 @@ export default {
       }).catch((err) => {
         console.log(err)
       })
+    },
+    // 轉換unix時間
+    changeDate (unixTime) {
+      const localDate = new Date(unixTime * 1000)
+      return localDate.toLocaleDateString()
+    },
+    // 金額轉換千分位
+    changeNum (num) {
+      const n = parseInt(num, 10)
+      return `${n.toFixed(0).replace(/./g, (c, i, a) => (i && c !== '.' && ((a.length - i) % 3 === 0) ? `, ${c}`.replace(/\s/g, '') : c))}`
     }
   },
   mounted () {

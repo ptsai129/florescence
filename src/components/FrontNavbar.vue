@@ -55,11 +55,10 @@
               >
             </li>
           </ul>
-          <a href="#"
-            ><i
-              class="bi bi-balloon-heart fs-2 text-secondary mx-4 d-none d-md-block"
+          <router-link to="/favoriteproducts">
+          <i class="bi bi-balloon-heart fs-2 text-secondary mx-4 d-none d-md-block"
             ></i
-          ></a>
+          ></router-link>
           <router-link to="/cart"
             ><i
               class="bi bi-basket fs-2 text-secondary me-4 d-none d-md-block position-relative"

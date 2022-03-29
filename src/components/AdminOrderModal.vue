@@ -57,7 +57,7 @@
                   </tr>
                   <tr>
                     <th>下單時間</th>
-                    <td>{{ adminOrder.create_at}}</td>
+                    <td>{{ changeDate(adminOrder.create_at)}}</td>
                   </tr>
                   <tr>
                     <th>付款狀態</th>
@@ -71,7 +71,7 @@
                   <tr>
                     <th>總金額</th>
                     <td>
-                      {{ adminOrder.total }}
+                      NT${{ changeNum(adminOrder.total) }}
                     </td>
                   </tr>
                 </tbody>
@@ -87,7 +87,7 @@
                     </th>
                     <td>{{ product.qty }} / {{ product.product.unit }}</td>
                     <td class="text-end">
-                      NT${{ product.final_total }}
+                      NT${{ changeNum(product.final_total) }}
                     </td>
                   </tr>
                 </tbody>
@@ -156,7 +156,15 @@ export default {
     hideModal () {
       this.orderModal.hide()
     },
-    updateOrder () {
+    // 轉換unix時間
+    changeDate (unixTime) {
+      const localDate = new Date(unixTime * 1000)
+      return localDate.toLocaleDateString()
+    },
+    // 金額轉換千分位
+    changeNum (num) {
+      const n = parseInt(num, 10)
+      return `${n.toFixed(0).replace(/./g, (c, i, a) => (i && c !== '.' && ((a.length - i) % 3 === 0) ? `, ${c}`.replace(/\s/g, '') : c))}`
     }
   },
   mounted () {

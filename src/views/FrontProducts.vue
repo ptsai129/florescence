@@ -25,7 +25,10 @@
             <h5 class="card-title">{{ product.title }}</h5>
               <p class="card-text fs-5 fw-bold mb-0">NT${{ product.price }}</p>
             <div class="d-flex">
-              <button class="btn btn-info text-light me-3"><i class="bi bi-balloon-heart-fill me-1"></i>收藏</button>
+              <button class="btn btn-info text-light me-3" @click="toggleFavorite(product.id)">
+              <span v-if="favorite.includes(product.id)"><i class="bi bi-balloon-heart-fill me-1"></i></span>
+              <span v-else><i class="bi bi-balloon-heart me-1"></i></span>
+              收藏</button>
               <button class="btn btn-success text-secondary fw-bold"  @click="addToCart(product.id)"><i class="bi bi-basket-fill me-1"></i>加入購物車
           </button>
             </div>
@@ -62,7 +65,9 @@ export default {
       },
       cartData: {
         carts: []
-      }
+      },
+      // 從localStorage內讀取自定義的favorite欄位內容 並從字串轉型成json格式 設定預設為空陣列
+      favorite: JSON.parse(localStorage.getItem('favorite')) || []
     }
   },
   methods: {
@@ -94,6 +99,22 @@ export default {
         // 觸發FrontNavbar上購物車圖示數量更新
         emitter.emit('get-cart')
       })
+    },
+    // 存到收藏
+    toggleFavorite (id) {
+      console.log(id)
+      // 比對是favorite陣列中是否有相同的id的index存在
+      const favoriteIndex = this.favorite.findIndex(item => item === id)
+      // findIndex()沒有符合會回傳-1
+      if (favoriteIndex === -1) {
+        // favorite陣列內沒有此id的index 故新增到陣列內
+        this.favorite.push(id)
+        console.log(this.favorite)
+      } else {
+        // 如果已經有存在 則移除
+        this.favorite.splice(favoriteIndex, 1)
+        console.log(this.favorite)
+      }
     }
   },
   computed: {
@@ -106,6 +127,16 @@ export default {
           return item.category === this.input.type
         })
       }
+    }
+  },
+  watch: {
+    // 深層監聽data內的favorite陣列 若有變動會寫入localStorage
+    favorite: {
+      handler () {
+        // 將資料寫入localStorage的自訂欄位favorite localStorage不能存json要轉成字串
+        localStorage.setItem('favorite', JSON.stringify(this.favorite))
+      },
+      deep: true
     }
   },
   mounted () {

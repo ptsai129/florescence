@@ -36,6 +36,10 @@ const routes = [
       {
         path: 'payment/:orderedId',
         component: () => import('../views/FrontPayment.vue') // 前台 付款頁面
+      },
+      {
+        path: 'favoriteproducts',
+        component: () => import('../views/FrontFavProducts.vue')// 前台 蒐藏產品
       }
     ]
   },
