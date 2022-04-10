@@ -26,7 +26,7 @@
                        <!-- key需為唯一值 所以加入其他內容避免重複 -->
                        <template v-for="(img , key) in tempProduct.imagesUrl" :key="key + '123'">
                        <input type="text" class="form-control" v-model="tempProduct.imagesUrl[key]" >
-                       <img :src="tempProduct.imagesUrl[key]" class="img-fluid" alt="">
+                       <img :src="tempProduct.imagesUrl[key]" class="img-fluid" alt="產品圖片">
                       <button type="button" class="btn btn-danger btn-sm d-block w-100"
                        @click="tempProduct.imagesUrl.splice(key, 1)">刪除圖片</button>
                        </template>

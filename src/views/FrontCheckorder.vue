@@ -24,7 +24,7 @@
           </li>
           <hr>
         </ul>
-        <p class="fs-4 text-secondary fw-bold">合計金額: NT$ {{ cartData.total}}</p>
+        <p class="fs-4 text-secondary fw-bold">合計金額: NT$ {{ cartData.total }}</p>
       </div>
       <div class="col-12 col-md-6">
         <h2 class="fs-3 fw-bold text-light px-4 py-2 bg-success text-center">
@@ -35,7 +35,7 @@
               <label for="email" class="form-label">Email</label>
               <v-field id="email" name="email" type="email" class="form-control"
                        :class="{ 'is-invalid': errors['email'] }" placeholder="請輸入 Email"
-                       v-model="form.user.email" ></v-field>
+                       v-model="form.user.email" rules="email|required" ></v-field>
               <error-message name="email" class="invalid-feedback"></error-message>
             </div>
             <div class="mb-3">
@@ -46,8 +46,8 @@
             </div>
             <div class="mb-3">
               <label for="tel" class="form-label">收件人電話</label>
-              <v-field id="tel" name="電話" type="text" class="form-control" :class="{ 'is-invalid': errors['電話'] }"
-                       placeholder="請輸入電話" v-model="form.user.tel"  :rules="isPhone"></v-field>
+              <v-field id="tel" name="電話" type="tel" class="form-control" :class="{ 'is-invalid': errors['電話'] }"
+                       placeholder="請輸入電話 09xx-xxx-xxx" v-model="form.user.tel"  :rules="isPhone"></v-field>
               <error-message name="電話" class="invalid-feedback"></error-message>
             </div>
 

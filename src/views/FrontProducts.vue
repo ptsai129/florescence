@@ -17,9 +17,9 @@
         v-for="product in filteredProducts"
         :key="product.id"
       >
-        <div class="card h-100 border-primary" data-aos="fade-up">
-          <router-link  :to="`/product/${product.id}`"  :style="{backgroundImage:`url(${product.imageUrl})`}" style="height:300px; background-size:cover; background-position:center center" class="position-relative">
-             </router-link>
+        <router-link  :to="`/product/${product.id}`"  class="card h-100 border-primary text-decoration-none" data-aos="fade-up">
+          <div  :style="{backgroundImage:`url(${product.imageUrl})`}" style="height:300px; background-size:cover; background-position:center center" class="position-relative">
+             </div>
           <span class="badge bg-secondary fs-6 p-2 position-absolute">{{product.category}}</span>
           <div class="card-body bg-light text-secondary ">
             <h5 class="card-title">{{ product.title }}</h5>
@@ -33,26 +33,12 @@
           </button>
             </div>
           </div>
-        </div>
+        </router-link>
       </div>
     </div>
   </div>
   <router-view></router-view>
 </template>
-
-<style lang="scss">
-.shop-banner{
-  background: url("https://images.unsplash.com/photo-1460538512106-37e555b43281?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80") no-repeat center center;
-  height:400px;
-  background-size: cover;
-  object-fit: cover;
-}
-.shopBanner-txt{
-@media (min-width: 576px) {
-    right:50%;
-  }
-}
-</style>
 
 <script>
 import emitter from '@/methods/mitt'
@@ -150,3 +136,17 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.shop-banner{
+  background: url("https://images.unsplash.com/photo-1460538512106-37e555b43281?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80") no-repeat center center;
+  height:400px;
+  background-size: cover;
+  object-fit: cover;
+}
+.shopBanner-txt{
+@media (min-width: 576px) {
+    right:50%;
+  }
+}
+</style>

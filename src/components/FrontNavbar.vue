@@ -77,30 +77,6 @@
   </div>
 </template>
 
-<style lang="scss">
-@import "src/assets/all.scss";
-.box-shadow {
-  box-shadow: 0px 0px 15px rgba(232, 219, 211, 0.9);
-}
-.nav-logo {
-  height: 50px;
-  width: 130px;
-  @media (min-width: 576px) {
-    height: 70px;
-    width: 190px;
-  }
-}
-.nav-item:hover {
-  background-color: $success;
-  color: $light;
-  font-weight: bold;
-}
-
-.fs-sm{
-font-size:10px;
-}
-</style>
-
 <script>
 import emitter from '@/methods/mitt'
 export default {
@@ -127,3 +103,27 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+@import "src/assets/all.scss";
+.box-shadow {
+  box-shadow: 0px 0px 15px rgba(232, 219, 211, 0.9);
+}
+.nav-logo {
+  height: 50px;
+  width: 130px;
+  @media (min-width: 576px) {
+    height: 70px;
+    width: 190px;
+  }
+}
+.nav-item:hover {
+  background-color: $success;
+  color: $light;
+  font-weight: bold;
+}
+
+.fs-sm{
+font-size:10px;
+}
+</style>

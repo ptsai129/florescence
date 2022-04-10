@@ -27,14 +27,13 @@
               <h3>用戶資料</h3>
               <table class="table">
                 <tbody  v-if="adminOrder.user">
-                <!--不懂為什麼少這個判斷會出錯??-->
                   <tr>
                     <th style="width: 100px">姓名</th>
-                    <td>{{adminOrder.user.name }}</td>
+                    <td>{{ adminOrder.user.name }}</td>
                   </tr>
                   <tr>
                     <th>Email</th>
-                    <td>{{adminOrder.user.email }}</td>
+                    <td>{{ adminOrder.user.email }}</td>
                   </tr>
                   <tr>
                     <th>電話</th>
@@ -42,7 +41,7 @@
                   </tr>
                   <tr>
                     <th>地址</th>
-                    <td>{{ adminOrder.user.address}}</td>
+                    <td>{{ adminOrder.user.address }}</td>
                   </tr>
                 </tbody>
               </table>
@@ -57,7 +56,7 @@
                   </tr>
                   <tr>
                     <th>下單時間</th>
-                    <td>{{ changeDate(adminOrder.create_at)}}</td>
+                    <td>{{ changeDate(adminOrder.create_at) }}</td>
                   </tr>
                   <tr>
                     <th>付款狀態</th>
