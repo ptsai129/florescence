@@ -29,7 +29,7 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" ref="collapse">
+        <div class="collapse navbar-collapse" ref="navcollapse">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="me-2">
               <router-link class="nav-item nav-link" @click="closeNav" to="/about"
@@ -73,7 +73,7 @@
 </template>
 
 <script>
-import Collapse from 'bootstrap/js/dist/collapse'
+import NavCollapse from 'bootstrap/js/dist/collapse'
 import emitter from '@/methods/mitt'
 export default {
   data () {
@@ -91,10 +91,10 @@ export default {
       })
     },
     closeNav () {
-      this.collapse.hide()
+      this.navCollapse.hide()
     },
     toggleNav () {
-      this.collapse.toggle()
+      this.navCollapse.toggle()
     }
   },
   mounted () {
@@ -103,7 +103,7 @@ export default {
       this.getCarts()
     })
     // navbar toggler
-    this.collapse = new Collapse(this.$refs.collapse, {
+    this.navCollapse = new NavCollapse(this.$refs.navcollapse, {
       toggle: false
     })
   }

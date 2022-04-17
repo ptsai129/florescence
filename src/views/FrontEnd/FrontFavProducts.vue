@@ -7,12 +7,12 @@
         <div
           class="col-md-6 col-lg-3 mb-3 mb-md-5"
           v-for="product in filteredItem"
-          :key="product[0].id"
+          :key="product.id"
         >
           <div class="card h-100 border-primary" data-aos="fade-up">
             <router-link
-              :to="`/product/${product[0].id}`"
-              :style="{ backgroundImage: `url(${product[0].imageUrl})` }"
+              :to="`/product/${product.id}`"
+              :style="{ backgroundImage: `url(${product.imageUrl})` }"
               style="
                 height: 300px;
                 background-size: cover;
@@ -22,16 +22,16 @@
             >
             </router-link>
             <span class="badge bg-secondary fs-6 p-2 position-absolute">{{
-              product[0].category
+              product.category
             }}</span>
             <div class="card-body bg-light text-secondary">
-              <h5 class="card-title">{{ product[0].title }}</h5>
+              <h5 class="card-title">{{ product.title }}</h5>
               <p class="card-text fs-5 fw-bold mb-0">
-                NT${{ product[0].price }}
+                NT${{ product.price }}
               </p>
                 <div class="d-flex">
-            <button class="btn btn-danger me-2"  @click.prevent="deleteFav(product[0].id)">刪除收藏</button>
-            <button class="btn btn-success text-secondary fw-bold"  @click.prevent="addToCart(product[0].id)"><i class="bi bi-basket-fill me-1"></i>加入購物車
+            <button class="btn btn-danger me-2"  @click.prevent="deleteFav(product.id)">刪除收藏</button>
+            <button class="btn btn-success text-secondary fw-bold"  @click.prevent="addToCart(product.id)"><i class="bi bi-basket-fill me-1"></i>加入購物車
           </button>
             </div>
             </div>
@@ -158,7 +158,7 @@
         </div>
       </div>
     </div>
-  </div>``
+  </div>
   <router-view></router-view>
 </template>
 
@@ -186,13 +186,7 @@ export default {
     },
     getFavItem () {
       this.favoriteId = JSON.parse(localStorage.getItem('favorite')) || []
-      this.favoriteId.forEach((item) => {
-        this.filteredItem.push(
-          this.products.filter((product) => {
-            return product.id === item
-          })
-        )
-      })
+      this.filteredItem = this.products.filter(product => this.favoriteId.includes(product.id))
     },
     // 加入購物車
     addToCart (id, qty = 1) {
@@ -215,18 +209,6 @@ export default {
         // 觸發FrontNavbar上購物車圖示數量更新
         emitter.emit('get-cart')
       })
-    },
-    // 刪除收藏
-    deleteFav (id) {
-      console.log(id)
-      // 比對是favoriteId陣列中是否有相同的id的index存在
-      const delFavIndex = this.favoriteId.findIndex(item => item === id)
-      console.log(delFavIndex)
-      if (delFavIndex !== -1) {
-        this.favoriteId.splice(delFavIndex, 1)
-        this.getFavItem()
-        this.$swal('已刪除收藏')
-      }
     }
   },
   mounted () {
