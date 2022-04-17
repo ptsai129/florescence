@@ -32,27 +32,27 @@
         </h2>
     <v-form ref="form" class="mt-3 bg-light p-3" v-slot="{ errors }" @submit="onSubmit" >
             <div class="mb-3">
-              <label for="email" class="form-label">Email</label>
+              <label for="email" class="form-label">Email*</label>
               <v-field id="email" name="email" type="email" class="form-control"
                        :class="{ 'is-invalid': errors['email'] }" placeholder="請輸入 Email"
                        v-model="form.user.email" rules="email|required" ></v-field>
               <error-message name="email" class="invalid-feedback"></error-message>
             </div>
             <div class="mb-3">
-              <label for="name" class="form-label">收件人姓名</label>
+              <label for="name" class="form-label">姓名*</label>
               <v-field id="name" name="姓名" type="text" class="form-control" :class="{ 'is-invalid': errors['姓名'] }"
                        placeholder="請輸入姓名" rules="required" v-model="form.user.name"></v-field>
               <error-message name="姓名" class="invalid-feedback"></error-message>
             </div>
             <div class="mb-3">
-              <label for="tel" class="form-label">收件人電話</label>
+              <label for="tel" class="form-label">電話*</label>
               <v-field id="tel" name="電話" type="tel" class="form-control" :class="{ 'is-invalid': errors['電話'] }"
                        placeholder="請輸入電話 09xx-xxx-xxx" v-model="form.user.tel"  :rules="isPhone"></v-field>
               <error-message name="電話" class="invalid-feedback"></error-message>
             </div>
 
             <div class="mb-3">
-              <label for="address" class="form-label">收件人地址</label>
+              <label for="address" class="form-label">收件地址*</label>
               <v-field id="address" name="地址" type="text" class="form-control" :class="{ 'is-invalid': errors['地址'] }"
                        placeholder="請輸入地址" rules="required" v-model="form.user.address" ></v-field>
               <error-message name="地址" class="invalid-feedback"></error-message>

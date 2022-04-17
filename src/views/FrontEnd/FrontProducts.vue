@@ -17,19 +17,19 @@
         v-for="product in filteredProducts"
         :key="product.id"
       >
-        <router-link  :to="`/product/${product.id}`"  class="card h-100 border-primary text-decoration-none" data-aos="fade-up">
-          <div  :style="{backgroundImage:`url(${product.imageUrl})`}" style="height:300px; background-size:cover; background-position:center center" class="position-relative">
+        <router-link :to="`/product/${product.id}`" class="card h-100 border-primary text-decoration-none" data-aos="fade-up">
+          <div :style="{backgroundImage:`url(${product.imageUrl})`}" style="height:300px; background-size:cover; background-position:center center" class="position-relative card-img">
              </div>
           <span class="badge bg-secondary fs-6 p-2 position-absolute">{{product.category}}</span>
-          <div class="card-body bg-light text-secondary ">
+          <div class="card-body bg-light text-secondary text-decoration-none">
             <h5 class="card-title">{{ product.title }}</h5>
               <p class="card-text fs-5 fw-bold mb-0">NT${{ product.price }}</p>
             <div class="d-flex">
-              <button class="btn btn-info text-light me-3" @click="toggleFavorite(product.id)">
+              <button class="btn btn-info text-light me-3" @click.prevent="toggleFavorite(product.id)">
               <span v-if="favorite.includes(product.id)"><i class="bi bi-balloon-heart-fill me-1"></i></span>
               <span v-else><i class="bi bi-balloon-heart me-1"></i></span>
               收藏</button>
-              <button class="btn btn-success text-secondary fw-bold"  @click="addToCart(product.id)"><i class="bi bi-basket-fill me-1"></i>加入購物車
+              <button class="btn btn-success text-secondary fw-bold"  @click.prevent="addToCart(product.id)"><i class="bi bi-basket-fill me-1"></i>加入購物車
           </button>
             </div>
           </div>
@@ -88,18 +88,16 @@ export default {
     },
     // 存到收藏
     toggleFavorite (id) {
-      console.log(id)
       // 比對是favorite陣列中是否有相同的id的index存在
       const favoriteIndex = this.favorite.findIndex(item => item === id)
       // findIndex()沒有符合會回傳-1
       if (favoriteIndex === -1) {
         // favorite陣列內沒有此id的index 故新增到陣列內
         this.favorite.push(id)
-        console.log(this.favorite)
+        this.$swal('已加入收藏清單')
       } else {
         // 如果已經有存在 則移除
         this.favorite.splice(favoriteIndex, 1)
-        console.log(this.favorite)
       }
     }
   },
@@ -148,5 +146,19 @@ export default {
 @media (min-width: 576px) {
     right:50%;
   }
+}
+.card-img{
+opacity:.65;
+filter: brightness(0.9);
+transition:.3s;
+}
+.card-img:hover{
+filter: brightness(1.05);
+opacity:1;
+}
+.card-title ,.card-text{
+&:hover{
+font-weight: 700;
+}
 }
 </style>

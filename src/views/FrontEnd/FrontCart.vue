@@ -33,7 +33,7 @@
             <template v-else>
             <div class="d-flex flex-column align-items-center justify-content-center mb-3" style="background-Image:url(https://images.unsplash.com/photo-1486306885345-1256d25cd259?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80); height:500px; background-position:bottom center;">
             <p class="fw-bold fs-3 text-light text-center">購物車內沒有商品</p>
-            <router-link class="btn btn-outline-primary text-secondary" to="/shopflowers">前往購物</router-link>
+            <router-link class="btn btn-light text-secondary" to="/shopflowers">前往購物</router-link>
             </div>
             </template>
         </div>
@@ -48,7 +48,7 @@
                <i class="bi bi-trash-fill"></i>清空購物車
             </button>
             <!--購物車內沒商品不能點擊確認購物車按鈕-->
-            <button class="btn btn-secondary btn-block" to="/checkorder" :disabled="cartLength==0" @click="toCheckorder()">
+            <button class="btn btn-secondary btn-block btn-cart" to="/checkorder" :disabled="cartLength==0" @click="toCheckorder()">
             <i class="bi bi-clipboard-check"></i>
              確認購物車</button>
         </div>
@@ -119,3 +119,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.btn-cart:disabled{
+cursor: not-allowed;
+}
+</style>

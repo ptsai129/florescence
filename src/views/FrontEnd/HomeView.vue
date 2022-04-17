@@ -1,12 +1,14 @@
 <template>
   <div
-    class="banner container-fluid d-flex justify-content-center align-items-center"
-  >
+    class="banner container-fluid d-flex justify-content-center align-items-center">
     <div class="banner-txt typewriter">
       <h1 class="fs-2 fw-bold text-light">讓花的香氣和美好，走進你的生活裡</h1>
+      <div class="banner-button text-center mt-3">
+      <a href="#popular" class="text-danger"><i class="bi bi-heart-fill fs-1"></i></a>
+      </div>
     </div>
   </div>
-  <div class="popular-product container-fluid bg-light">
+  <div class="popular-product py-5 container-fluid bg-light" id="popular">
     <div class="container">
       <h2 class="fs-3 py-3 pt-md-4 pb-md-3 mb-0 text-secondary fw-bold">
         熱門花禮
@@ -17,7 +19,7 @@
             <a href="#"  @click.prevent="goProductsPage('鮮花')">
               <img
                 class="img-fluid object-cover"
-                src="../assets/images/flowers-1.jpg"
+                src="../../assets/images/flowers-1.jpg"
             /></a>
             <div
               class="popular-txt position-absolute top-50 start-50 translate-middle"
@@ -31,7 +33,7 @@
             <a href="#"  @click.prevent="goProductsPage('花束')">
               <img
                 class="img-fluid object-cover"
-                src="../assets/images/bouquet-1.jpg"
+                src="../../assets/images/bouquet-1.jpg"
             /></a>
             <div
               class="popular-txt position-absolute top-50 start-50 translate-middle"
@@ -45,7 +47,7 @@
             <a href="#"  @click.prevent="goProductsPage('盆花')">
               <img
                 class="img-fluid object-cover"
-                src="../assets/images/pottedFlowers-1.jpg"
+                src="../../assets/images/pottedFlowers-1.jpg"
             /></a>
             <div
               class="popular-txt position-absolute top-50 start-50 translate-middle"
@@ -57,20 +59,20 @@
       </div>
     </div>
   </div>
-  <div class="intro container-fluid bg-secondary">
+  <div class="intro py-5 container-fluid bg-secondary">
     <div class="container">
       <h2 class="fs-3 py-3 pt-md-4 pb-md-3 mb-0 text-primary fw-bold">
         關於我們
       </h2>
       <div class="row g-0 py-1 py-md-3">
         <div class="col-12 col-md-6 col-lg-4">
-          <div class="pic">
+          <router-link to="/about" class="pic">
             <img
               class="img-fluid object-cover"
-              src="../assets/images/intro-photo.jpg"
+              src="../../assets/images/intro-photo.jpg"
               alt=""
             />
-          </div>
+          </router-link>
         </div>
         <div class="col-12 col-md-6 col-lg-8 bg-light">
           <div class="intro-text" data-aos="fade-down">
@@ -92,7 +94,7 @@
   <div class="bg-primary">
     <div class="container">
       <div
-        class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center align-items-start py-3"
+        class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center align-items-start py-5"
       >
         <p class="fs-4 mb-0 fw-bold text-secondary">訂閱我們獲得最新消息</p>
           <v-form class="input-group w-75 mt-md-0 mt-3" ref="form" v-slot="{ errors }" @submit="onSubmit">
@@ -119,7 +121,7 @@
 
 <style lang="scss">
 .banner {
-  background: url("../assets/images/frontBanner.jpg") no-repeat center;
+  background: url("../../assets/images/frontBanner.jpg") no-repeat center;
   height: 500px;
   background-size: cover;
   object-fit: cover;
@@ -159,6 +161,22 @@
     border-color: #fff;
   }
 }
+/* banner往下指引的icon */
+.banner-button{
+animation: moveUpAndDown 1s infinite;
+}
+
+@keyframes moveUpAndDown {
+0%{
+transform: translate(0px, 0px);
+}
+50% {
+transform: translate(0px, -20px);
+}
+100% {
+transform: translate(0px, 0px);
+}
+}
 /*熱門花禮*/
 .popular-item img {
   opacity: 0.6;
@@ -186,6 +204,7 @@
   object-fit: cover;
 }
 .pic {
+  display: block;
   overflow: hidden;
 }
 .pic img {
@@ -195,6 +214,7 @@
 .pic img:hover {
   transform: scale(1.2, 1.2);
 }
+
 </style>
 
 <script>

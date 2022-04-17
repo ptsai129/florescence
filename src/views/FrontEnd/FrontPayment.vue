@@ -46,7 +46,7 @@
           <li class="mb-2">收件人地址:&nbsp;{{ orderData?.user?.address }}</li>
           <li class="mb-2">備註:&nbsp; {{ orderData.message }}</li>
         </ul>
-        <button type="submit" class="btn btn-danger" @click="payTheBill()"  :disabled="orderData.is_paid===true">{{ orderData.is_paid ? "完成付款" : "確認付款" }}</button>
+        <button type="submit" class="btn btn-danger" @click="payTheBill()" >{{ orderData.is_paid ? "完成付款" : "確認付款" }}</button>
         <router-link  class="btn btn-primary ms-2 text-secondary" to="/" v-if="orderData.is_paid">回到首頁</router-link>
       </div>
     </div>

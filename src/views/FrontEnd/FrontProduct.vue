@@ -19,8 +19,9 @@
           <p>{{product.description}}</p>
           <div class="row align-items-center">
             <div class="col-6">
-             <select class="form-control text-center" v-model="qty">
-             <option value="1" selected>1件商品</option>
+             <select class="form-select text-center border-primary" v-model="qty">
+             <option value="" selected>選擇購買數量</option>
+             <option value="1">1件商品</option>
              <option value="2">2件商品</option>
              <option value="3">3件商品</option>
              <option value="4">4件商品</option>
@@ -28,7 +29,7 @@
              </select>
             </div>
             <div class="col-6">
-              <button class="text-nowrap btn btn-secondary w-100 py-2 rounded" @click="addToCart(qty)">加入購物車</button>
+              <button class="text-nowrap btn btn-secondary w-100 py-2 rounded" @click="addToCart(qty)"  :disabled="isClicked===true">加入購物車</button>
             </div>
           </div>
           <small class="text-info mt-3">如需大量訂購，歡迎透過電話和我們討論</small>
@@ -68,10 +69,11 @@ export default {
     return {
       product: [],
       id: '',
-      qty: '1',
+      qty: '',
       cartData: {
         carts: []
-      }
+      },
+      isClicked: false
     }
   },
   methods: {
@@ -83,7 +85,11 @@ export default {
       })
     },
     // 加入購物車
-    addToCart (qty = 1) {
+    addToCart (qty) {
+      if (qty === '') {
+        this.$swal('請選擇商品數量')
+        return
+      }
       const num = parseInt(qty)
       // 定義要帶入api的資訊
       const data = {
@@ -95,9 +101,17 @@ export default {
           // 觸發購物車圖示數字變動
           emitter.emit('get-cart')
           this.$swal('商品已加入購物車')
+          this.isClicked = true
+          this.setClickableBtn()
         }).catch((err) => {
           console.log(err.response)
         })
+    },
+    // 避免使用者連續點擊，瘋狂 call API
+    setClickableBtn () {
+      setTimeout(() => {
+        this.isClicked = false
+      }, 2000)
     }
   },
   mounted () {
