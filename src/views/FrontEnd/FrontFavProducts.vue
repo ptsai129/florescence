@@ -188,6 +188,13 @@ export default {
       this.favoriteId = JSON.parse(localStorage.getItem('favorite')) || []
       this.filteredItem = this.products.filter(product => this.favoriteId.includes(product.id))
     },
+    deleteFav (id) {
+      const favIndex = this.favoriteId.findIndex(item => item === id)
+      this.favoriteId.splice(favIndex, 1)
+      // 將資料寫入localStorage的自訂欄位favorite localStorage不能存json要轉成字串
+      localStorage.setItem('favorite', JSON.stringify(this.favoriteId))
+      this.getFavItem()
+    },
     // 加入購物車
     addToCart (id, qty = 1) {
       // 定義要帶入api的資訊
