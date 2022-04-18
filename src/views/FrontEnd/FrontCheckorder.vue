@@ -1,5 +1,10 @@
 <template>
   <div class="container py-5">
+  <ul class="progressbar mb-5 text-secondary d-flex list-unstyled justify-content-around">
+   <li class="bg-success d-flex flex-column align-items-center"><i class="bi bi-cart-check fs-2"></i>確認購物車</li>
+   <li class="bg-warning  d-flex flex-column align-items-center"><i class="bi bi-card-list fs-2"></i>填寫訂單</li>
+   <li class="border border-success border-2 d-flex flex-column align-items-center"><i class="bi bi-cash-coin fs-2"></i>完成付款</li>
+   </ul>
     <div class="row">
       <div class="col-12 col-md-6">
         <h1 class="fs-3 fw-bold text-light text-center px-4 py-2 bg-success">
@@ -8,7 +13,7 @@
         <ul class="list-unstyled mt-3" v-for="item in cartData.carts" :key="item.id">
           <li class="d-flex">
             <div
-              :style="{ backgroundImage: `url(${item.product.imageUrl})` }"
+              :style="{ backgroundImage: `url(${ item.product.imageUrl })` }"
               style="
                 height: 120px;
                 width: 120px;
@@ -138,3 +143,11 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.progressbar{
+  li{
+   width:31%;
+  }
+}
+</style>

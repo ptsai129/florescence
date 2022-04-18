@@ -1,7 +1,12 @@
 <template>
   <div class="container py-5">
+    <ul class="progressbar mb-5 text-secondary d-flex list-unstyled justify-content-around">
+   <li class="bg-success d-flex flex-column align-items-center"><i class="bi bi-cart-check fs-2"></i>確認購物車</li>
+   <li class="bg-success  d-flex flex-column align-items-center"><i class="bi bi-card-list fs-2"></i>填寫訂單</li>
+   <li class="bg-warning d-flex flex-column align-items-center"><i class="bi bi-cash-coin fs-2"></i>完成付款</li>
+   </ul>
     <div class="row">
-      <div class="col-12 col-md-6">
+      <div class="col-12 col-md-6" >
         <h1 class="fs-3 fw-bold text-light text-center px-4 py-2 bg-success">
           訂單明細
         </h1>
@@ -47,7 +52,7 @@
           <li class="mb-2">備註:&nbsp; {{ orderData.message }}</li>
         </ul>
         <button type="submit" class="btn btn-danger" @click="payTheBill()" >{{ orderData.is_paid ? "完成付款" : "確認付款" }}</button>
-        <router-link  class="btn btn-primary ms-2 text-secondary" to="/" v-if="orderData.is_paid">回到首頁</router-link>
+        <router-link  class="btn btn-light btn-shine btn-lg ms-2 text-secondary" to="/" v-if="orderData.is_paid">回到首頁</router-link>
       </div>
     </div>
   </div>
@@ -70,7 +75,6 @@ export default {
           `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/order/${this.orderId}`
         )
         .then((res) => {
-          console.log(res)
           this.orderData = res.data.order
           // 轉換unix時間
           this.orderDate = new Date(res.data.order.create_at * 1000)
@@ -103,3 +107,28 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.progressbar{
+  li{
+   width:31%;
+  }
+}
+@keyframes glowing {
+  0% {
+    background-color: rgb(235, 200, 216);
+    box-shadow: 0 0 5px rgb(235, 200, 216);
+  }
+  50% {
+    background-color: rgba(247, 239, 12, 0.47);
+    box-shadow: 0 0 20px rgba(247, 239, 12, 0.47);
+  }
+  100% {
+    background-color:rgb(235, 200, 216);
+    box-shadow: 0 0 5px rgb(235, 200, 216);
+  }
+}
+.btn-shine{
+  animation: glowing 1300ms infinite;
+}
+</style>

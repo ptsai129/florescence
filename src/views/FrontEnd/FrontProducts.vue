@@ -18,9 +18,9 @@
         :key="product.id"
       >
         <router-link :to="`/product/${product.id}`" class="card h-100 border-primary text-decoration-none" data-aos="fade-up">
-          <div :style="{backgroundImage:`url(${product.imageUrl})`}" style="height:300px; background-size:cover; background-position:center center" class="position-relative card-img">
+          <div :style="{ backgroundImage:`url(${ product.imageUrl })`}" style="height:300px; background-size:cover; background-position:center center" class="position-relative card-img">
              </div>
-          <span class="badge bg-secondary fs-6 p-2 position-absolute">{{product.category}}</span>
+          <span class="badge bg-secondary fs-6 p-2 position-absolute">{{ product.category }}</span>
           <div class="card-body bg-light text-secondary text-decoration-none">
             <h5 class="card-title">{{ product.title }}</h5>
               <p class="card-text fs-5 fw-bold mb-0">NT${{ product.price }}</p>

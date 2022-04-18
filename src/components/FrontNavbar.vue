@@ -8,20 +8,16 @@
           <img src="../assets/images/logo.png" class="nav-logo" alt="logo" />
         </router-link>
         <div class="d-flex">
-          <i
-            class="bi bi-balloon-heart fs-3 text-secondary me-3 d-lg-none d-md-none"
-          ></i>
-          <router-link to="/cart"
-            ><i
-              class="bi bi-basket fs-3 text-secondary me-1 d-lg-none d-md-none position-relative"
-              ><span
-                class="position-absolute top-0 start-50 fs-sm translate-middle rounded-circle badge bg-danger" v-if="cartData.carts.length!=0"
-              >
-                 {{ cartData?.carts?.length }}
-                <span class="visually-hidden">unread messages</span>
-              </span></i
-            ></router-link
-          >
+          <router-link to="/favoriteproducts">
+          <i class="bi bi-balloon-heart fs-3 text-secondary me-3 d-lg-none d-md-none"></i>
+          </router-link>
+          <router-link to="/cart">`
+          <i class="bi bi-basket fs-3 text-secondary me-1 d-lg-none d-md-none position-relative">
+          <span class="position-absolute top-0 start-50 fs-sm translate-middle rounded-circle badge bg-danger" v-if="cartData.carts.length!=0" >
+          {{ cartData?.carts?.length }}<span class="visually-hidden">unread messages</span>
+          </span>
+          </i>
+          </router-link>
         </div>
         <button
           class="navbar-toggler"

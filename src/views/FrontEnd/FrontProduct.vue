@@ -56,12 +56,6 @@
 </div>
 </template>
 
-<style lang="scss">
-.notice-bg{
-background-image: url(https://images.unsplash.com/photo-1587317997367-3d47566f9528?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80);
-background-position: center center;
-}
-</style>
 <script>
 import emitter from '@/methods/mitt'
 export default {
@@ -121,3 +115,10 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.notice-bg{
+background-image: url(https://images.unsplash.com/photo-1587317997367-3d47566f9528?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80);
+background-position: center center;
+}
+</style>
