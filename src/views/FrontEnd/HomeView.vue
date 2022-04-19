@@ -78,7 +78,7 @@
         <h3 class="fs-4 py-5 text-light fw-bold text-start" data-aos="fade-down">「這一生的浪漫與寵溺，永遠要記得留一份給媽媽。」</h3>
         <div class="latestNews-txt d-flex flex-column" data-aos="fade-down">
         <p class="fs-5 text-primary mb-3">母親節只是五月的其中一天，媽媽的付出卻是全年無休的。媽媽的世界不大，因為幾乎裝滿了關於你的任何一件小事；你的世界很大，常常忽略了她對你的關心，又是一年一度的母親節，送上Florescence精心準備的花禮吧!告訴媽媽你有多麼愛她。</p>
-        <router-link   to="/shopflowers" class="btn btn-outline-light w-25 align-self-end">前往選購</router-link>
+        <router-link   to="/shopflowers" class="btn btn-outline-light w-50 align-self-end">前往選購</router-link>
         </div>
         </div>
       </div>

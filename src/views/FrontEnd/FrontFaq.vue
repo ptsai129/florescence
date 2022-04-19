@@ -164,7 +164,7 @@
                 </div>
               </div>
             </div>
-            <h2 class="fs-4 fw-bold text-secondary">
+            <h2 class="fs-4 fw-bold text-secondary mt-5">
               <i class="bi bi-bag-heart me-1"></i>花禮照顧方式
             </h2>
             <div class="accordion mb-5" id="accordionExample">
