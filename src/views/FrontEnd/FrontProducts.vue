@@ -5,7 +5,7 @@
   </div>
   </div>
   <div class="container mt-md-5 mt-3 mb-7">
-    <select v-model="input.type" class="form-select w-25 mb-5" aria-label="Default select example">
+    <select v-model="input.type" class="form-select select-size mb-5" aria-label="Default select example">
       <option value="全部" selected>全部商品</option>
       <option value="鮮花">鮮花</option>
       <option value="花束">花束</option>
@@ -25,11 +25,11 @@
             <h5 class="card-title">{{ product.title }}</h5>
               <p class="card-text fs-5 fw-bold mb-0">NT${{ product.price }}</p>
             <div class="d-flex">
-              <button class="btn btn-info text-light me-3" @click.prevent="toggleFavorite(product.id)">
+              <button type="button" class="btn btn-info text-light me-3" @click.prevent="toggleFavorite(product.id)">
               <span v-if="favorite.includes(product.id)"><i class="bi bi-balloon-heart-fill me-1"></i></span>
               <span v-else><i class="bi bi-balloon-heart me-1"></i></span>
               收藏</button>
-              <button class="btn btn-success text-secondary fw-bold"  @click.prevent="addToCart(product.id)"><i class="bi bi-basket-fill me-1"></i>加入購物車
+              <button  type="button" class="btn btn-success text-secondary fw-bold"  @click.prevent="addToCart(product.id)"><i class="bi bi-basket-fill me-1"></i>加入購物車
           </button>
             </div>
           </div>
@@ -160,5 +160,14 @@ opacity:1;
 &:hover{
 font-weight: 700;
 }
+}
+.select-size{
+width:75%;
+  @media (min-width: 576px) {
+    max-width: 50%;
+  }
+  @media (min-width: 768px) {
+    max-width: 25%;
+  }
 }
 </style>

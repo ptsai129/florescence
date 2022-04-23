@@ -5,13 +5,14 @@
     <div class="banner-txt typewriter">
       <h1 class="fs-2 fw-bold text-light">讓花的香氣和美好，走進你的生活裡</h1>
       <div class="banner-button text-center mt-3">
-        <a href="#popular" class="text-danger"
+        <router-link to="/shopflowers" class="text-danger text-decoration-none"
           ><i class="bi bi-heart-fill fs-1"></i
-        ></a>
+        ><p class="text-primary fw-bold">
+        立即購買</p></router-link>
       </div>
     </div>
   </div>
-  <div class="popular-product py-5 container-fluid bg-primary" id="popular">
+  <div class="popular-product py-5 container-fluid bg-primary">
     <div class="container">
       <h2 class="fs-3 py-3 pt-md-4 pb-md-3 mb-0 text-secondary fw-bold">
         熱門花禮
@@ -22,7 +23,7 @@
             <a href="#" @click.prevent="goProductsPage('鮮花')">
               <img
                 class="img-fluid object-cover"
-                src="../../assets/images/flowers-1.jpg"
+                src="../../assets/images/flowers-1.jpg" alt="鮮花類別圖片"
             /></a>
             <div
               class="popular-txt position-absolute top-50 start-50 translate-middle"
@@ -36,7 +37,7 @@
             <a href="#" @click.prevent="goProductsPage('花束')">
               <img
                 class="img-fluid object-cover"
-                src="../../assets/images/bouquet-1.jpg"
+                src="../../assets/images/bouquet-1.jpg" alt="花束類別圖片"
             /></a>
             <div
               class="popular-txt position-absolute top-50 start-50 translate-middle"
@@ -50,7 +51,7 @@
             <a href="#" @click.prevent="goProductsPage('盆花')">
               <img
                 class="img-fluid object-cover"
-                src="../../assets/images/pottedFlowers-1.jpg"
+                src="../../assets/images/pottedFlowers-1.jpg" alt="盆花類別圖片"
             /></a>
             <div
               class="popular-txt position-absolute top-50 start-50 translate-middle"
@@ -98,7 +99,7 @@
             <img
               class="img-fluid object-cover"
               src="../../assets/images/intro-photo.jpg"
-              alt=""
+              alt="Florescence介紹圖片"
             />
           </router-link>
         </div>
@@ -120,12 +121,13 @@
   </div>
   <div class="bg-primary">
     <div class="container">
-      <div
-        class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center align-items-start py-5"
-      >
-        <p class="fs-4 mb-0 fw-bold text-secondary">訂閱我們獲得最新消息</p>
+      <div class="row flex-column py-5">
+        <div class="col-12">
+        <p class="fs-4 mb-2 fw-bold text-secondary">訂閱我們獲得最新消息</p>
+        </div>
+        <div class="col-11 col-lg-5 col-md-8">
         <v-form
-          class="input-group w-75 mt-md-0 mt-3"
+          class="input-group mt-md-0 mt-3"
           ref="form"
           v-slot="{ errors }"
           @submit="onSubmit"
@@ -145,6 +147,7 @@
           </button>
           <error-message name="email" class="invalid-feedback"></error-message>
         </v-form>
+        </div>
       </div>
     </div>
   </div>
@@ -272,7 +275,7 @@ export default {
 }
 .pic img {
   transform: scale(1, 1);
-  transition: all 1s ease-out;
+  transition: all .3s ease-out;
 }
 .pic img:hover {
   transform: scale(1.2, 1.2);

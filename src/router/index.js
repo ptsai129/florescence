@@ -40,6 +40,10 @@ const routes = [
       {
         path: 'favoriteproducts',
         component: () => import('../views/FrontEnd/FrontFavProducts.vue')// 前台 蒐藏產品
+      },
+      {
+        path: 'completedpayment',
+        component: () => import('../views/FrontEnd/FrontCompletedPayment.vue') // 前台 付款完成頁面
       }
     ]
   },
@@ -72,7 +76,7 @@ const router = createRouter({
   routes,
   linkActiveClass: 'active', // Bootstrap
   scrollBehavior (to, from, savedPosition) {
-    if (to.fullPath.match('newPage')) {
+    if (to.fullPath.match('/')) {
       return {
         top: 0 // 在切換不同頁面時 仍會保持在最上面的位置
       }

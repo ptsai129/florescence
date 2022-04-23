@@ -52,7 +52,6 @@
           <li class="mb-2">備註:&nbsp; {{ orderData.message }}</li>
         </ul>
         <button type="submit" class="btn btn-danger" @click="payTheBill()" >{{ orderData.is_paid ? "完成付款" : "確認付款" }}</button>
-        <router-link  class="btn btn-light btn-shine btn-lg ms-2 text-secondary" to="/" v-if="orderData.is_paid">回到首頁</router-link>
       </div>
     </div>
   </div>
@@ -92,12 +91,17 @@ export default {
           `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/pay/${this.orderId}`
         )
         .then((res) => {
-          this.$swal('付款完成')
           this.getOrderInfo()
+          this.toCompletedPayment()
         })
         .catch((error) => {
           alert(error.message)
         })
+    },
+    toCompletedPayment () {
+      setTimeout(() => {
+        this.$router.push('/completedpayment')
+      }, 2000)
     }
   },
   mounted () {
@@ -113,22 +117,5 @@ export default {
   li{
    width:31%;
   }
-}
-@keyframes glowing {
-  0% {
-    background-color: rgb(235, 200, 216);
-    box-shadow: 0 0 5px rgb(235, 200, 216);
-  }
-  50% {
-    background-color: rgba(247, 239, 12, 0.47);
-    box-shadow: 0 0 20px rgba(247, 239, 12, 0.47);
-  }
-  100% {
-    background-color:rgb(235, 200, 216);
-    box-shadow: 0 0 5px rgb(235, 200, 216);
-  }
-}
-.btn-shine{
-  animation: glowing 1300ms infinite;
 }
 </style>

@@ -9,9 +9,9 @@
           v-for="product in filteredItem"
           :key="product.id"
         >
-          <div class="card h-100 border-primary" data-aos="fade-up">
-            <router-link
-              :to="`/product/${ product.id }`"
+          <router-link
+              :to="`/product/${ product.id }`" class="card h-100 border-primary text-decoration-none" data-aos="fade-up">
+            <div
               :style="{ backgroundImage: `url(${ product.imageUrl })` }"
               style="
                 height: 300px;
@@ -20,7 +20,7 @@
               "
               class="position-relative"
             >
-            </router-link>
+            </div>
             <span class="badge bg-secondary fs-6 p-2 position-absolute">{{ product.category }}</span>
             <div class="card-body bg-light text-secondary">
               <h5 class="card-title">{{ product.title }}</h5>
@@ -33,7 +33,7 @@
           </button>
             </div>
             </div>
-          </div>
+          </router-link>
         </div>
       </template>
       <template v-else>
